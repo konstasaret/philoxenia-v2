@@ -1,14 +1,16 @@
-# Open Estia
+# Greek Mafia
 
-**Find your people and build**
+**Big ambition. Bigger family.**
 
-Greek roots. Open doors. Everywhere. Open Estia is an early hospitality project for a global Greek community and the wider community of builders: people sharing a place to stay, a little time, and what they have learned.
+A completely legal global network of Greeks and builders who share knowledge, resources, introductions, and a place to start. The ambition: a huge, successful family that helps the next generation grow, then asks them to reach back and help someone else.
 
-The website tells that story through English headlines and Greek body copy. Philoxenia by Hustle Hours is credited as the inspiration. The worldwide network is a vision, not a claim of confirmed hosts in every city. All seeded host profiles are explicitly fictional examples.
+**Godfathers** are experienced people who can offer guidance, contacts, local support, or optional accommodation. **Associates** are newer builders looking to learn, work on their ambitions, and contribute. Both roles are open to all genders. Participation and offered support are free; the pilot is for adults 18+.
 
-## Run locally
+Philoxenia by Hustle Hours is credited as the spark. This is an independent initiative, not a claim of official affiliation. The worldwide city network is a vision; sample profiles are not confirmed members.
 
-Requires Python 3.9+ (use a maintained Python version for new installations).
+## Start locally
+
+Use Python 3.9+; a maintained Python version is recommended for new installations.
 
 ```sh
 git clone https://github.com/konstasaret/philoxenia-v2.git
@@ -16,49 +18,57 @@ cd philoxenia-v2
 ./start.sh
 ```
 
-The first start creates a virtual environment and installs dependencies. Then open:
+The first start installs Python dependencies in `.venv`. Then open:
 
 - Website: http://127.0.0.1:5073/
+- Associate form: http://127.0.0.1:5073/join
+- Godfather form: http://127.0.0.1:5073/become-a-godfather
 - Private operator dashboard: http://127.0.0.1:5073/admin
-- Local demo login: `admin@openestia.local` / `OpenEstiaDemo!2026`
 
-The demo password is intentionally public and for local use only. The server binds to localhost. Uploading this source repository does not deploy the website.
+**Fresh-demo operator:** `admin@greekmafia.local` / `GreekMafiaDemo!2026`. These intentionally public credentials are for local use only. An existing installation retains its previous credentials and all records; the rebrand does not change its login.
 
-## The experience
+The server binds to localhost. A GitHub source upload does not deploy the website.
 
-1. **The story:** Greek community, Philoxenia's spark, bigger ambitions, and the vision of builders opening their homes around the world.
-2. **The invitation:** meet host examples, understand the sleeping arrangement and the free offer, then fill in a short form. No guest or host accounts.
-3. **The practical details:** personal follow-up, agreed dates and expectations, conditional extras, and clear responsibilities.
-4. **The people behind it:** an honest note about starting small. Sourced builder stories sit further down the page as reading, not as proof of partnerships.
-5. **The operator:** private inquiries, notes and manual status; create/edit/publish/pause hosts and journal stories; edit introductory copy. Email and WhatsApp buttons only open the relevant app.
+## What is included
 
-## Your data
+1. A new identity, original connected-family mark, English display titles, Greek body copy, and an ink/ivory/olive/coral palette.
+2. A family manifesto, the personal impact of finding support, respectful Philoxenia credit, an aspirational global network, the Godfather role, and a clear give-back code.
+3. Animated typography, a rotating seal, moving network connections, and entrance reveals. A visible motion control, reduced-motion support, and readable no-JavaScript/error fallbacks are included.
+4. Two private inquiry forms, followed up personally by email or WhatsApp. No member accounts, automated matching, payments, automatic messages or bookings.
+5. An operator inbox, private notes/status, editable Godfather profiles with optional accommodation, a sourced journal, editable introductory copy, backup/restore, and preserved historical records.
 
-The database, private uploads, backups and a randomly generated signing secret are stored under `.data/`. This folder and `.env` are ignored by Git and are not included in this repository. Normal use needs no cloud account, API key, remote font, remote image, or automated messaging service.
+Godfathers do not need to offer a bed. An empty sleeping-arrangement field means no accommodation is offered. Other benefits remain individually marked included, conditional or unavailable.
 
-A fresh checkout creates three sample hosts, three sourced stories, one demo operator and an empty inbox. Existing local databases are preserved. Earlier Open Estia records are imported without deleting their original tables; only the operator can read the historical archive.
+## Source and data
 
-The public homepage is `templates/v2/index.html`. Its public styles are in `static/movement.css`; shared form and operator styles are in `static/editorial.css`. Initial copy is in `intake_seed.py`. Editing defaults does not overwrite an existing operator's saved copy; use **Website** in the dashboard for that.
+Homepage: `templates/v2/index.html`. Public design: `static/mafia.css`. Motion controller: `static/mafia.js`. Shared forms/operator styles: `static/editorial.css`. Default copy: `intake_seed.py`. Current vector assets: `static/brand/greek-mafia-mark.svg` and `greek-mafia-wordmark.svg`.
+
+Private records, uploads, backups and signing secrets stay under `.data/`, excluded from Git along with `.env`. Normal runtime needs no remote images, fonts, API keys or cloud services.
+
+For continuity, the existing `OPEN_ESTIA_*` environment names, `open-estia.sqlite3` filename, and stored `guest`/`host` role keys are retained internally. They map to Associate/Godfather in the interface. Old `/apply`, `/become-a-host`, `/explore` and `/homes/<id>` URLs still work. Public navigation uses the new role names and routes.
+
+Untouched previous starter copy upgrades once. Operator-written copy and contact email are preserved. Use **Website** in the private dashboard to edit your own story.
 
 ## Checks and operation
 
 ```sh
 .venv/bin/python -m pytest -q
+node --test tests/motion.test.cjs
 .venv/bin/python manage.py backup
 .venv/bin/python manage.py operator --email your-address@example.com
 ```
 
-The operator command prompts for a new password and invalidates older sessions. Stop the server before reset or restore. Both preserve a recovery backup:
+Node is only needed for the optional motion-controller unit tests, not for running the site. The operator command asks for a password securely. Stop the server before resetting or restoring data:
 
 ```sh
 .venv/bin/python manage.py reset --confirm RESET-SAMPLE-DATA
 .venv/bin/python manage.py restore --backup /absolute/path/to/backup --confirm RESTORE-BACKUP
 ```
 
-## What this repository is ready for
+Both commands first create a recovery backup. Reset replaces active data with samples; restore preserves earlier supported databases.
 
-Local demonstration and further development. There is no public deployment, automated booking, payments, messaging, matching, or participant dashboard. Hosting, HTTPS, production credentials, real host commitments and final programme/privacy details still need to be configured before a public launch.
+## Verification and launch
 
-Functional and server-rendered checks are documented in [test results](docs/TEST-RESULTS.md). The current desktop/mobile layout has not been visually verified in a browser because preview access was restricted in the development session. Reference photos remain attributed to their sources; public reuse rights have not been verified.
+See [test results](docs/TEST-RESULTS.md), [operator instructions](docs/OPERATOR-GUIDE.md), [design](docs/BRAND.md), [architecture](docs/WORKFLOWS.md), [photo credits](docs/PHOTO-SOURCES.md), and [launch readiness](docs/READINESS.md).
 
-Read the [operator guide](docs/OPERATOR-GUIDE.md), [launch readiness](docs/READINESS.md), [architecture](docs/WORKFLOWS.md), [design story](docs/BRAND.md), and [photo credits](docs/PHOTO-SOURCES.md).
+Functional, motion-controller and server-rendered checks are distinct from visual browser QA. The current design and animation appearance still need a desktop/mobile browser review; browser automation access was restricted in the development session. Public launch also needs hosting/HTTPS, production credentials, real member commitments, final privacy/support details, and appropriate image permissions. No public site has been deployed.

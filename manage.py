@@ -10,7 +10,7 @@ from store import db, execute, init_db, one
 from intake_seed import seed
 from operations import backup
 
-parser=argparse.ArgumentParser(description='Open Estia local operator tools')
+parser=argparse.ArgumentParser(description='Greek Mafia local operator tools')
 parser.add_argument('command',choices=['init','backup','restore','reset','operator'])
 parser.add_argument('--confirm',default='')
 parser.add_argument('--backup',help='Backup directory to restore')
@@ -20,7 +20,7 @@ app=create_app()
 with app.app_context():
     data=Path(app.config['DATA_DIR'])
     if args.command=='init':
-        print('Open Estia ready. Existing data preserved; public forms and operator dashboard enabled.')
+        print('Greek Mafia ready. Existing data preserved; public forms and operator dashboard enabled.')
     elif args.command=='backup':
         print('Backup saved:',backup(db(),data))
     elif args.command=='operator':
@@ -50,7 +50,7 @@ with app.app_context():
         check=sqlite3.connect(str(source/'open-estia.sqlite3'))
         if check.execute('PRAGMA integrity_check').fetchone()[0]!='ok': parser.error('Backup database integrity check failed.')
         tables={r[0] for r in check.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-        if not {'operators','users'}.intersection(tables): parser.error('This is not an Open Estia backup.')
+        if not {'operators','users'}.intersection(tables): parser.error('This is not an Greek Mafia backup.')
         print('Current data backup:',backup(db(),data))
         check.backup(db());check.close()
         shutil.rmtree(data/'uploads');shutil.copytree(source/'uploads',data/'uploads')

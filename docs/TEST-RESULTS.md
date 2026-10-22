@@ -1,35 +1,39 @@
-# Verification — October 21, 2026 (Pacific)
+# Verification — October 22, 2026
 
-## Current result
+## Current results
 
-**50 functional tests passed in 19.78 seconds.** Command: `.venv/bin/python -m pytest -q`. Output: `test-output.txt`.
+**53 Python checks passed in 21.49 seconds.** Run `.venv/bin/python -m pytest -q`; output is in `test-output.txt`.
 
-The current homepage is the community-and-invitation design: **A bigger world. A familiar face.** It retains the simplified forms and operator workflow.
+**6 motion-controller checks passed.** Run `node --test tests/motion.test.cjs`. These execute the local controller with mocked DOM interfaces; they are not browser visual tests.
 
-## What was checked
+The current identity is **Greek Mafia — Big ambition. Bigger family.**
 
-1. Public pages and local assets; anonymous guest and host intake; validation preserving input; consent; saved records surviving restart; duplicate and simultaneous submission handling.
-2. Private operator access; rejection of participant sessions; removed booking/account routes; login and session invalidation; CSRF including malformed tokens; rate limiting; escaped user content.
-3. Private notes and manual status; email/WhatsApp links; editing, publishing and pausing hosts and stories; saved homepage copy. Long benefit descriptions remain editable.
-4. Image validation, metadata removal, access restrictions, paused-host applications, source URL validation, and repeatable seeding without overwriting saved edits.
-5. Legacy import without modifying original tables; no background booking/email jobs; backup, reset and restore against temporary test data.
+## Functional coverage
 
-No messages were sent. Functional tests use temporary data and do not modify local participant records.
+1. Canonical Associate/Godfather forms, old-route compatibility, private role-labelled intake, validation, explicit adult/contact consent, duplicate handling, concurrency, and persistence across restart.
+2. Operator authentication, retained legacy credentials, session invalidation, rejected participant sessions, CSRF, malformed input, request limits and escaped content.
+3. Private notes/status, safe manual email/WhatsApp links, editing/publishing/pausing profiles and stories, and Godfathers offering mentoring without accommodation. Blank sleeping text explicitly means no stay.
+4. Image validation/re-encoding, hidden draft images, paused-profile submissions, valid source URLs and repeatable seeding. The brand upgrade replaces untouched defaults while preserving custom copy, records and contact email.
+5. Legacy import preserving original tables and details, local backups, reset and restore. No automatic matching, booking, messaging or expiry processes are introduced.
 
-## Structure and accessibility checks
+Tests use temporary records. No messages are sent and no live inquiry data is modified.
 
-32 pages were rendered using an isolated copy of the local database. Every checked page returned HTTP 200, had one main heading, unique IDs, labelled fields, no nested forms, valid internal links and resolvable local image/styles. The homepage story order and new stylesheet were checked. All seven checked text/background pairs exceeded 4.5:1 contrast.
+## Motion coverage
 
-Results: `movement-render-checks.json`. The report contains no inquiry content or private contact details.
+Pause/resume and state labels; reduced-motion settings; no IntersectionObserver fallback; observer-initialization failure; one-time entrance reveal; keyboard-focus visibility; preference changes; printing. CSS keeps content visible before JavaScript enhancement and disables animation for reduced-motion preferences.
 
-The public styling includes desktop, tablet and phone breakpoints, keyboard focus indicators, 44px-or-larger primary navigation/action targets, and 16px mobile form inputs. Source inspection and rendered HTML are not proof of browser appearance.
+## Rendered-page and contrast checks
 
-## Visual verification limit
+38 public and operator pages rendered successfully against an isolated database copy. Checks verified one main heading per page, unique IDs, labelled fields, no nested forms, resolvable internal links and local assets, and no old public brand. The homepage's family → story → world → Godfather → give-back → two-entry-point order is present.
 
-The current desktop/mobile layout and actual browser interactions have **not** been visually verified. Preview access was previously denied by browser security policy, including retry or alternate browser paths. No workaround or screenshot claim is made.
+All seven sampled text/background pairs exceed 4.5:1. Results are in `mafia-render-checks.json`. These are source and server-rendered checks, not proof of visual alignment, clipping or animation appearance.
 
-Before public launch, inspect the homepage, host directory/profile, journal, both forms, validation/confirmation and operator screens at desktop and phone widths, including keyboard focus and horizontal overflow.
+## Remaining visual review
 
-## Source delivery
+Desktop/mobile browser review is **pending**. Browser security previously denied localhost automation and prohibited retry/alternate browser paths. No workaround was used.
 
-Git excludes the local database, backups, private uploads, signing secret, environment files, virtual environment, caches and historical private-dataset audits. The repository provides the app, local reference/brand assets, sample content, documentation and tests. A source upload is not a hosted deployment.
+Inspect the homepage at desktop and narrow-phone widths: hero lettering, seal/photo overlap, ticker, story, network, role cards, focus and the Pause motion control. Then inspect both forms, errors, confirmation, a Godfather profile without accommodation and the private inbox. Motion-controller unit checks do not replace this review.
+
+## Source and data boundary
+
+Local records, backups, uploads, secrets and environment files stay excluded from Git. A row-by-row comparison with the pre-rebrand backup confirmed that all 21 tables other than website settings were unchanged. Existing credentials remain unchanged. The source repository contains only app code, public assets, clearly labelled examples, tests and documentation. Source delivery does not mean public hosting.

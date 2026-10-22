@@ -6,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 import pytest
 from PIL import Image
 from app import create_app
-from intake_seed import DEMO_PASSWORD
+from intake_seed import DEMO_EMAIL, DEMO_PASSWORD
 from store import execute, one, rows, settings
 
 @pytest.fixture
@@ -27,9 +27,9 @@ def form_data(client,path='/apply',**overrides):
     data.update(overrides)
     return data
 
-def operator(site):
+def operator(site,email=DEMO_EMAIL):
     client=site.test_client(); client.get('/admin/login')
-    response=submit(client,'/admin/login',dict(email='admin@openestia.local',password=DEMO_PASSWORD))
+    response=submit(client,'/admin/login',dict(email=email,password=DEMO_PASSWORD))
     assert response.status_code==302 and response.location=='/admin'
     return client
 
@@ -156,7 +156,7 @@ def test_story_and_site_content_edit(site,visitor):
     admin=operator(site)
     story=dict(title='A verified new story',summary='Σύντομη σύνοψη.',city='Nairobi, Kenya',category='Builder story',published_on='2026-10-20',source_name='Original publisher',source_url='https://example.test/story',status='published',position='-1')
     assert submit(admin,'/admin/stories/new',story).status_code==302
-    assert 'A verified new story' in visitor.get('/').get_data(as_text=True)
+    assert 'A verified new story' in visitor.get('/journal').get_data(as_text=True)
     with site.app_context(): values=settings(); story_id=one("SELECT id FROM stories WHERE title='A verified new story'")['id']
     values.update(hero_intro='Η δική μας καινούργια εισαγωγή.',contact_email='hello@example.test')
     assert submit(admin,'/admin/content',values).status_code==302
@@ -228,7 +228,7 @@ def test_migrate_legacy_backup_without_mutation(tmp_path):
         assert one('SELECT count(*) n FROM operators')['n']==1
     create_app(dict(TESTING=True,DATA_DIR=str(tmp_path),SECRET_KEY='migration-test'))
     with migrated.app_context(): assert one('SELECT count(*) n FROM inquiries')['n']==1
-    admin=operator(migrated)
+    admin=operator(migrated,email='admin@openestia.local')
     assert 'PRIVATE INTERVIEW' in admin.get('/admin/inquiries/1').get_data(as_text=True)
     archive=admin.get('/admin/archive?table=users').get_data(as_text=True)
     assert password not in archive and 'guest@example.test' in archive
@@ -303,3 +303,48 @@ def test_valid_long_benefits_remain_editable(site):
         listing=one('SELECT * FROM listings WHERE id=?',(listing_id,))
         assert listing['name']=='Updated host name'
         assert json.loads(listing['benefits'])['Meals']['note']==payload['note_Meals'].strip()
+
+
+def test_greek_mafia_two_roles_save_privately_under_correct_labels(site,visitor):
+    for path,role in [('/join','Associate'),('/become-a-godfather','Godfather')]:
+        html=visitor.get(path).get_data(as_text=True)
+        assert 'Greek Mafia' in html and role in html and 'Open Estia' not in html
+        data=form_data(visitor,path,city='Athens',message='I can share practical engineering experience and learn with the family.')
+        assert submit(visitor,path,data).location=='/thanks'
+        assert role in visitor.get('/thanks').get_data(as_text=True)
+    with site.app_context():
+        assert [r['kind'] for r in rows('SELECT kind FROM inquiries ORDER BY id')]==['guest','host']
+        assert one('SELECT count(*) n FROM listings')['n']==3
+    inbox=operator(site).get('/admin').get_data(as_text=True)
+    assert 'Associate' in inbox and 'Godfather' in inbox
+    for path in ['/','/godfathers','/program']:
+        assert 'alex@example.test' not in visitor.get(path).get_data(as_text=True)
+
+
+def test_godfather_can_offer_support_without_accommodation(site,visitor):
+    admin=operator(site)
+    payload=listing_payload()
+    payload.update(name='Mentor without a spare room',sleeping='',availability='One conversation a month, by agreement.',status='published',benefit_Mentorship='conditional',note_Mentorship='Engineering feedback by agreement.')
+    assert submit(admin,'/admin/listings/new',payload).status_code==302
+    with site.app_context(): item=one("SELECT * FROM listings WHERE name='Mentor without a spare room'")
+    assert item['sleeping']==''
+    html=visitor.get('/godfathers/'+str(item['id'])).get_data(as_text=True)
+    assert 'Engineering feedback by agreement.' in html
+    assert 'Δεν προσφέρεται διαμονή σε αυτό το προφίλ.' in html
+    assert 'PRIVATE EXACT ADDRESS' not in html
+    data=form_data(visitor,'/join',listing_id=str(item['id']))
+    assert submit(visitor,'/join',data).location=='/thanks'
+    with site.app_context(): assert one('SELECT listing_id FROM inquiries')['listing_id']==item['id']
+
+
+def test_brand_upgrade_changes_defaults_but_keeps_custom_copy_and_records(site):
+    from intake_seed import seed,DEFAULT_CONTENT,PREVIOUS_CONTENT
+    with site.app_context():
+        execute("DELETE FROM site_settings WHERE key='greek_mafia_copy_v1'")
+        execute("UPDATE site_settings SET value=? WHERE key='hero_intro'",(PREVIOUS_CONTENT['hero_intro'],))
+        execute("UPDATE site_settings SET value=? WHERE key='manifesto'",('Our operator wrote a personal story.',))
+        before=[tuple(r) for r in rows('SELECT * FROM listings ORDER BY id')]
+        seed();seed()
+        assert settings()['hero_intro']==DEFAULT_CONTENT['hero_intro']
+        assert settings()['manifesto']=='Our operator wrote a personal story.'
+        assert [tuple(r) for r in rows('SELECT * FROM listings ORDER BY id')]==before

@@ -97,7 +97,7 @@ def create_app(test_config=None):
     @app.context_processor
     def context():
         return dict(operator=g.operator,csrf=session['csrf'],content=settings(),states=STATES,
-            benefit_names=BENEFIT_LABELS,benefit_keys=BENEFITS,parse_json=json.loads,image_url=image_url,
+            role_labels={'guest':'Associate','host':'Godfather','support':'Previous report'},benefit_names=BENEFIT_LABELS,benefit_keys=BENEFITS,parse_json=json.loads,image_url=image_url,
             is_admin=request.path.startswith('/admin'),valid_url=public_url,
             date_label=lambda value:date.fromisoformat(value[:10]).strftime('%d %b %Y') if value else '')
 
@@ -129,12 +129,14 @@ def create_app(test_config=None):
     def index(): return render_template('v2/index.html',listings=published_listings(),stories=published_stories()[:3])
 
     @app.get('/explore')
+    @app.get('/godfathers')
     def explore():
         city=request.args.get('city','')
         listings=[h for h in published_listings() if not city or h['city']==city]
         return render_template('v2/explore.html',listings=listings,city=city,cities=rows("SELECT DISTINCT city FROM listings WHERE status='published' ORDER BY city"))
 
     @app.get('/homes/<int:listing_id>')
+    @app.get('/godfathers/<int:listing_id>')
     def home(listing_id):
         listing=one('SELECT * FROM listings WHERE id=?',(listing_id,))
         if not listing or (listing['status']!='published' and not g.operator): abort(404)
@@ -172,13 +174,13 @@ def create_app(test_config=None):
                 if len(values[key])>maximum: errors[key]='Το κείμενο είναι πολύ μεγάλο.'
             links=values.get('links','').splitlines()
             if len(links)>5 or any(not public_url(link.strip()) for link in links if link.strip()): errors['links']='Βάλε έως 5 πλήρη links, ένα ανά γραμμή (https://…).'
-            if values.get('adult')!='1': errors['adult']='Η φιλοξενία είναι για ενήλικες 18+.'
+            if values.get('adult')!='1': errors['adult']='Η κοινότητα είναι για ενήλικες 18+.'
             if values.get('consent')!='1': errors['consent']='Χρειαζόμαστε τη συγκατάθεσή σου για να επικοινωνήσουμε.'
             selected=None
             if kind=='guest' and values.get('listing_id'):
                 selected=one("SELECT * FROM listings WHERE id=? AND status='published'",(values['listing_id'],))
                 if not selected: errors['listing_id']='Αυτό το προφίλ δεν είναι πλέον διαθέσιμο. Διάλεξε άλλο ή άφησε την επιλογή κενή.'
-            if kind=='host' and not values.get('city'): errors['city']='Σε ποια πόλη μπορείς να φιλοξενήσεις;'
+            if kind=='host' and not values.get('city'): errors['city']='Σε ποια πόλη μπορείς να στηρίξεις ένα νέο μέλος;'
             if not errors:
                 moment=stamp()
                 with atomic():
@@ -194,9 +196,11 @@ def create_app(test_config=None):
         return render_template('v2/form.html',kind=kind,values=values,errors=errors,submission_key=token,listings=choices),422 if errors else 200
 
     @app.route('/apply',methods=['GET','POST'])
+    @app.route('/join',methods=['GET','POST'])
     def apply(): return inquiry_form('guest')
 
     @app.route('/become-a-host',methods=['GET','POST'])
+    @app.route('/become-a-godfather',methods=['GET','POST'])
     def become_host(): return inquiry_form('host')
 
     @app.get('/thanks')
@@ -252,7 +256,7 @@ def create_app(test_config=None):
             return redirect(url_for('inquiry',inquiry_id=inquiry_id))
         phone=re.sub(r'\D','',item['phone'])
         return render_template('v2/inquiry.html',item=item,legacy=json.loads(item['legacy_json']),
-            email_link='mailto:'+quote(item['email'],safe='@')+'?subject='+quote('Open Estia · '+item['name']),
+            email_link='mailto:'+quote(item['email'],safe='@')+'?subject='+quote('Greek Mafia · '+item['name']),
             whatsapp_link='https://wa.me/'+phone if phone else '')
 
     def editor_values(keys): return {k:request.form.get(k,'').strip() for k in keys}
@@ -310,7 +314,7 @@ def create_app(test_config=None):
         if request.method=='POST':
             values.update(editor_values(('name','headline','city','area','background','sleeping','shared','accessibility','rules','commitments','availability','status','position','contact_email','contact_phone','address','private_notes','image_alt','image_credit')))
             values['sample']=int(request.form.get('sample')=='1')
-            errors=validate_editor(values,('name','headline','city','background','sleeping','availability'))
+            errors=validate_editor(values,('name','headline','city','background','availability'))
             benefits={}
             for key in BENEFITS:
                 state=request.form.get('benefit_'+key,'unavailable')

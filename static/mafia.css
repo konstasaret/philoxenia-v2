@@ -1,0 +1,123 @@
+/* GREEK MAFIA — warm people, sharp ambition, a completely legal family. */
+:root{--paper:#f2efe4;--ink:#171b17;--pine:#171b17;--muted:#5b6055;--line:#cbd0bc;--white:#fcfaf2;--orange:#a53c26;--amber:#d4e879;--wash:#e6e9d7;--acid:#d4e879;--coral:#f58063}
+html{scroll-padding-top:26px}body{font-family:Arial,Helvetica,sans-serif}::selection{background:var(--acid);color:var(--ink)}
+[hidden]{display:none!important}.wrap{max-width:1320px;padding-inline:56px}.wrap.narrow{max-width:850px}
+.public-site h1,.public-site h2{font-family:Arial,Helvetica,sans-serif;font-weight:800;letter-spacing:-.065em;line-height:1.02}
+.public-site h1 em,.public-site h2 em{font-family:Georgia,serif;font-weight:400;letter-spacing:-.055em}
+.public-site h3{font-weight:650;letter-spacing:-.035em}.public-site p{line-height:1.85}
+.public-site .button,.operator-site .button{border-radius:3px;min-height:48px;gap:28px;font-size:13px;padding:14px 21px;background:var(--ink);border-color:var(--ink);color:var(--paper);transition:background .2s,transform .2s}
+.button:hover{background:#363d2d!important;color:#fff!important}.public-site .button.secondary{background:transparent;color:var(--ink)}
+.public-site .button.small{min-height:44px;padding:10px 16px;font-size:12px}
+:focus-visible{outline:3px solid var(--orange);outline-offset:5px}
+.public-site .eyebrow{font-size:10px;letter-spacing:.11em;line-height:1.5;font-weight:700;margin-bottom:24px}
+.text-link,.public-site .underlink{display:inline-flex;align-items:center;min-height:44px;font-size:13px;text-underline-offset:6px}
+.public-site .demo-strip,.operator-site .demo-strip{background:var(--ink);color:#e4e9d5;font-size:10px;letter-spacing:.04em;padding-block:6px}
+.masthead{min-height:112px;border-bottom:1px solid var(--ink);gap:25px}
+.brand-mafia{display:inline-flex;gap:10px;align-items:center;text-decoration:none}
+.brand-mafia img{width:38px;height:38px}.brand-mafia>span{font-family:Arial,Helvetica,sans-serif;font-size:19px;font-weight:900;letter-spacing:-.07em;line-height:.89}
+.masthead nav{gap:26px;font-size:12px}.masthead nav>a{min-height:44px;display:inline-flex;align-items:center}
+.motion-toggle{font:10px/1.4 Arial,sans-serif;background:transparent;border:1px solid var(--line);border-radius:20px;padding:8px 12px;min-height:36px;color:var(--muted);white-space:nowrap}
+.motion-toggle:hover{border-color:var(--ink);color:var(--ink)}
+.masthead-tools{display:flex;align-items:center;gap:25px}
+.public-site .footer{padding-block:45px;border-top:1px solid var(--ink);align-items:start}.footer-name{font-size:32px;font-weight:900;line-height:.95;text-transform:uppercase;letter-spacing:-.065em}
+.public-site .footer p{font-size:11px;margin-top:14px}.public-site .footer nav{gap:3px;font-size:12px}.public-site .footer nav a{padding-block:8px}.public-site .footer-note{font-size:19px}
+.mafia-home .chapter{padding-block:100px}.mafia-home h2{font-size:clamp(42px,5vw,66px)}
+.mafia-hero{padding-block:23px 55px}.hero-topline{display:flex;justify-content:space-between;gap:20px;font-size:9px;font-weight:650;letter-spacing:.11em;margin-bottom:38px}
+.mafia-hero-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:60px;align-items:center}
+.mafia-hero h1{font-family:'Arial Black',Arial,Helvetica,sans-serif;font-size:clamp(104px,13vw,178px);font-weight:900;letter-spacing:-.095em;line-height:.78;margin:0 0 26px}
+.mafia-hero h1>span{display:block}.mafia-hero h1>span+span{margin-top:.09em}.mafia-dot{color:var(--orange)}
+.hero-motto{font-family:Georgia,serif;font-size:30px;font-style:italic;letter-spacing:-.025em;line-height:1.4!important;margin:20px 0 0}
+.hero-right{position:relative;min-height:360px;padding:44px 22px 0 38px}
+.family-photo{width:255px;max-width:100%;margin:0 0 0 auto;transform:rotate(5deg);background:var(--white);padding:9px 9px 13px;box-shadow:4px 7px 0 #171b1720}
+.family-photo img{width:100%;height:230px;object-fit:cover;object-position:50% 65%}
+.family-photo figcaption{font-size:9px;line-height:1.7;margin-top:10px;padding-inline:3px;font-weight:700;letter-spacing:.04em}.family-photo figcaption a{font-size:9px;font-weight:400;letter-spacing:0}
+.legal-seal{position:absolute;top:-15px;left:-20px;width:158px;height:158px;z-index:1;border-radius:50%;background:var(--coral);color:var(--ink);transform:rotate(-14deg);box-shadow:0 0 0 7px var(--paper)}
+.seal-ring{width:100%;height:100%;display:block;fill:currentColor}.seal-ring text{font-size:12px;font-weight:700;letter-spacing:.8px}
+.legal-seal>span{position:absolute;inset:42px 0 auto;text-align:center;font-size:36px;font-weight:900;letter-spacing:-.075em;line-height:.9}.legal-seal i{font-size:40px;font-style:normal;line-height:1.15}
+.hero-bottom{display:grid;grid-template-columns:1.7fr 1fr;gap:60px;margin-top:38px;align-items:start}
+.hero-bottom>p{font-size:17px;line-height:1.85;max-width:620px;margin:0}.hero-bottom>div{display:flex;align-items:flex-start;flex-direction:column}
+.hero-bottom .button{background:var(--acid);border-color:var(--ink);color:var(--ink);min-width:260px;justify-content:space-between}
+.hero-bottom .text-link{font-size:11px;margin-top:6px}.hero-fineprint{font-size:10px;color:var(--muted);margin-top:4px}
+.family-ticker{overflow:hidden;background:var(--ink);color:var(--acid);padding-block:18px;border-block:1px solid var(--ink)}
+.ticker-track{display:flex;width:max-content}.ticker-track>span{white-space:nowrap;flex-shrink:0;font-size:21px;line-height:1.2;letter-spacing:-.025em;font-weight:700}.ticker-track i{font-style:normal;font-size:24px;margin-inline:26px;color:var(--coral)}
+.family-definition{display:grid;grid-template-columns:1fr 2.7fr;gap:70px}.chapter-index{font-size:10px;letter-spacing:.1em;display:flex;flex-direction:column;gap:35px;padding-top:6px}.annotation{font-family:Georgia,serif;font-style:italic;font-size:22px;letter-spacing:-.03em;transform:rotate(-7deg);color:var(--orange)}
+.definition-main h2{margin-bottom:34px}.definition-copy{max-width:670px;font-size:16px}.definition-copy p{margin-bottom:20px}.legal-line{display:flex;gap:14px;font-size:14px;padding-top:10px}.legal-line>span{font-size:25px;color:var(--orange);line-height:1.1}
+.origin-section{background:#e5e8d4}.origin-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:110px;padding-block:90px;align-items:center}.origin-photo{max-width:300px;position:relative}.origin-photo figure{margin:0;transform:rotate(-4deg)}
+.origin-photo img{width:100%;aspect-ratio:4/4.8;object-fit:cover}.origin-photo figcaption{font-size:10px;line-height:1.7;color:#51594b;margin-top:16px;transform:rotate(4deg)}
+.photo-scribble{position:absolute;right:-26px;top:-20px;font-family:Georgia,serif;font-size:23px;line-height:1.1;font-style:italic;transform:rotate(8deg);background:var(--acid);padding:10px 13px}
+.origin-copy h2{margin-bottom:30px}.origin-copy>p:not(.eyebrow){font-size:15px;max-width:610px}.spark-credit{border-top:1px solid #aeb99b;margin-top:32px;padding-top:28px}.spark-credit .eyebrow{font-size:9px;margin-bottom:12px;color:#4a533c}.spark-credit h3{font-family:Georgia,serif;font-size:29px;font-weight:400;line-height:1.15}.spark-credit p:not(.eyebrow){font-size:14px;line-height:1.85}.spark-credit .text-link{font-size:12px}
+.global-heading{display:grid;grid-template-columns:1.4fr 1fr;gap:0 70px;align-items:end}.global-heading>.eyebrow{grid-column:1/-1}.global-heading h2{margin:0}.global-heading>p:not(.eyebrow){font-size:15px;max-width:430px;margin:0}
+.network-board{position:relative;margin-top:45px;min-height:420px;background-color:var(--ink);background-image:radial-gradient(#3c4438 .8px,transparent .8px);background-size:21px 21px;color:var(--paper);overflow:hidden}
+.network-caption{display:flex;justify-content:space-between;gap:20px;padding:22px 27px;font-size:9px;letter-spacing:.1em;color:#bec8b0}
+.network-lines{position:absolute;top:70px;left:5%;width:90%;height:310px;fill:none;stroke:#6c7b57;stroke-width:1}.network-lines .network-route{stroke:var(--acid);stroke-width:1.5;stroke-dasharray:6 9;opacity:.85}
+.hub{position:absolute;display:flex;flex-direction:column;align-items:start;padding-left:19px;gap:4px;min-width:100px}.hub-dot{width:7px;height:7px;background:var(--acid);border-radius:50%;position:absolute;top:8px;left:0;box-shadow:0 0 0 5px #d4e87920}
+.hub-code{font-size:24px;font-weight:800;letter-spacing:-.055em;line-height:1}.hub strong{font-size:10px;color:#c4cfb5;font-weight:400;background:var(--ink);padding-right:4px}
+.hub-sf{top:43%;left:8%}.hub-ny{top:73%;left:29%}.hub-ath{top:56%;left:48%;color:var(--acid)}.hub-ldn{top:22%;left:45%}.hub-ber{top:28%;left:70%}.hub-sg{top:71%;left:80%}
+.network-footer{display:flex;align-items:start;justify-content:space-between;gap:40px;margin-top:20px}.network-footer p{font-size:11px;color:var(--muted);max-width:650px;margin:0}.network-footer a{flex-shrink:0;font-size:12px}
+.godfather-section{background:var(--ink);color:var(--paper)}.godfather-layout{display:grid;grid-template-columns:1fr 1.25fr;gap:110px;padding-block:90px}.godfather-title h2{font-size:clamp(48px,6vw,78px);margin-bottom:30px}.godfather-title h2 em{color:var(--acid)}
+.role-note{font-size:10px!important;line-height:1.9!important;color:#bdc8b0;letter-spacing:.06em}.family-emblem{display:flex;align-items:center;gap:13px;font-family:Georgia,serif;font-size:94px;line-height:1;color:#d4e879;border-block:1px solid #45503b;width:fit-content;padding:25px 0 20px;margin-top:55px}.family-emblem i{font-size:51px;font-style:normal}
+.godfather-copy>.large-copy{font-size:22px;line-height:1.65;color:var(--paper)}.godfather-copy>p{font-size:15px;color:#d3d8c9}.family-offers{margin:30px 0 20px}.family-offers>div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:25px;border-top:1px solid #485040;padding-block:20px}.family-offers dt{font-size:10px;color:var(--acid);letter-spacing:.07em;padding-top:3px}.family-offers dd{margin:0;font-size:13px;line-height:1.85;color:#d3d8c9}.godfather-copy .text-link{color:var(--acid);font-size:12px}
+.code-heading{display:grid;grid-template-columns:1.2fr 1fr;gap:0 100px;align-items:end}.code-heading>.eyebrow{grid-column:1/-1}.code-heading h2{margin:0}.code-heading>p:not(.eyebrow){font-size:15px;margin:0}
+.code-list{list-style:none;padding:0;margin:48px 0 0;border-top:1px solid var(--ink)}.code-list li{display:grid;grid-template-columns:85px minmax(0,1fr) 65px;gap:35px;border-bottom:1px solid var(--line);padding-block:30px;align-items:start}.code-list li>span{font-family:Georgia,serif;font-size:27px;color:var(--orange)}.code-list h3{font-size:31px;margin-bottom:15px}.code-list p{font-size:14px;max-width:700px;margin:0;color:var(--muted)}.code-list b{font-size:40px;font-weight:400;text-align:right}.code-footnote{font-size:12px;color:var(--muted);margin-top:22px}
+.join-family{background:var(--acid);padding-block:85px 65px}.join-heading h2{font-size:clamp(48px,6vw,78px);margin-bottom:45px}.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.role-card{border:1px solid var(--ink);padding:32px;background:var(--paper);display:flex;flex-direction:column;align-items:start;transition:transform .25s,box-shadow .25s}.godfather-card{background:var(--ink);color:var(--paper)}
+.role-card-top{display:flex;justify-content:space-between;align-items:center;gap:15px;width:100%;margin-bottom:38px}.role-card-top>span:first-child{font-size:9px;letter-spacing:.08em}.role-card-top>span:last-child{font-size:29px;line-height:1;color:var(--orange)}.godfather-card .role-card-top>span:last-child{color:var(--acid)}
+.role-card h3{font-family:Georgia,serif;font-size:43px;font-weight:400;letter-spacing:-.05em;line-height:1.05;margin-bottom:10px}.role-card .role-explainer{font-size:12px;color:var(--muted);margin-bottom:25px}.godfather-card .role-explainer{color:#c2cbb3}
+.role-card>p:not(.role-explainer):not(.role-fineprint){font-size:15px;margin-bottom:28px;flex:1}.role-card .button{width:100%;justify-content:space-between}.godfather-card .button{background:var(--acid);color:var(--ink);border-color:var(--acid)}
+.role-card .role-fineprint{font-size:10px;margin:16px 0 0;color:var(--muted)}.godfather-card .role-fineprint{color:#c2cbb3}.join-process{display:flex;justify-content:space-between;gap:50px;align-items:start;margin-top:28px}.join-process p{font-size:12px;max-width:680px;margin:0}.join-process a{font-size:12px;flex-shrink:0}
+.closing-family{padding-block:85px 80px}.closing-family>p:not(.eyebrow){font-family:Arial,Helvetica,sans-serif;font-size:clamp(48px,7vw,90px);font-weight:800;letter-spacing:-.065em;line-height:1.02;margin-bottom:28px}.closing-family em{font-family:Georgia,serif;font-weight:400}.closing-family .text-link{font-size:14px}
+/* Shared inner pages and private operator tools. */
+.public-site .page-head{padding-block:65px 36px}.public-site .page-head h1{font-size:clamp(50px,7vw,82px)}.public-site .page-head>p{font-size:16px}
+.public-site .form-layout{padding-block:65px 80px;gap:70px}.public-site .form-story h1{font-size:clamp(48px,5.5vw,74px)}.public-site .form-story h1 em{color:var(--ink)}.public-site .form-story>p:not(.eyebrow):not(.micro){font-size:16px}.public-site .form-paper{background:var(--white);border:1px solid var(--ink);padding:32px}
+.public-site .field>label{font-size:13px}.public-site .field>small{font-size:12px}.public-site .check{font-size:12px}.public-site input,.public-site textarea,.public-site select{font-size:16px}.public-site .form-aside-note{border-color:var(--line)}
+.public-site .host-person h3{font-family:Georgia,serif;font-size:33px}.public-site .host-person p:not(.eyebrow){font-size:13px}.public-site .host-index{font-size:16px}.public-site .sample-tag,.public-site .free-tag{font-size:11px}.public-site .circle-link{width:48px;height:48px}.public-site .stay-note{background:#e5e8d4;border-top-color:var(--ink)}
+.public-site .program-copy h2{font-size:37px;margin-block:40px 20px}.public-site .program-copy p{font-size:15px}.public-site .story-card h3{font-family:Georgia,serif;font-size:31px}.public-site .story-card .eyebrow,.public-site .story-meta,.public-site .photo-credit{font-size:11px}.public-site .story-card>p:not(.eyebrow):not(.photo-credit){font-size:14px}
+.public-site .confirmation .sun{color:var(--orange)}.public-site .confirmation h1{font-size:clamp(50px,6vw,78px)}
+/* Only enhance after the script has installed its fallback paths. */
+.motion-ready:not(.motion-paused) .ticker-track{animation:family-ticker 28s linear infinite}
+.motion-ready:not(.motion-paused) .seal-ring{animation:family-seal 24s linear infinite}
+.motion-ready:not(.motion-paused) .network-route{animation:family-route 12s linear infinite}
+.motion-ready:not(.motion-paused) .hero-identity{animation:family-arrival .7s ease-out both}
+.reveal-ready .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.reveal-ready .reveal.is-visible,.motion-paused .reveal{opacity:1;transform:none}
+@keyframes family-ticker{to{transform:translateX(-50%)}}
+@keyframes family-seal{to{transform:rotate(360deg)}}
+@keyframes family-route{to{stroke-dashoffset:-180}}
+@keyframes family-arrival{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media(hover:hover){.role-card:hover{transform:translateY(-5px);box-shadow:5px 7px 0 #171b1726}.public-site .button:hover{transform:translateY(-2px)}}
+@media(max-width:1100px){
+.wrap{padding-inline:36px}.masthead nav{gap:18px}.masthead-tools{gap:16px}.mafia-hero-grid,.hero-bottom{gap:35px;grid-template-columns:1.5fr 1fr}.mafia-hero h1{font-size:clamp(100px,13.1vw,145px)}
+.hero-right{padding-right:5px;padding-left:20px}.legal-seal{width:135px;height:135px;left:-8px;top:-5px}.legal-seal>span{top:36px;font-size:31px}.legal-seal i{font-size:33px}.family-photo{width:235px}.family-photo img{height:230px}
+.origin-layout,.godfather-layout{gap:65px}.family-definition{gap:45px;grid-template-columns:1fr 2.8fr}.global-heading{gap:0 40px}.code-heading{gap:0 60px}.role-card{padding:27px}.join-process{gap:30px}.network-footer{gap:25px}
+}
+@media(max-width:800px){
+.masthead{flex-wrap:wrap;gap:18px;min-height:105px;padding-block:20px}.masthead-tools{flex:1;justify-content:flex-end}.masthead nav{gap:17px;font-size:11px}.motion-toggle{font-size:9px;padding-inline:9px}
+.mafia-hero-grid{grid-template-columns:1.35fr 1fr;gap:20px}.mafia-hero h1{font-size:clamp(86px,13.7vw,108px)}.hero-right{min-height:270px;padding:30px 0 0 15px}.family-photo{width:195px}.family-photo img{height:180px}.legal-seal{width:112px;height:112px;top:-4px;left:-10px}.legal-seal>span{top:30px;font-size:26px}.legal-seal i{font-size:28px}
+.hero-bottom{grid-template-columns:1fr;gap:25px;margin-top:25px}.hero-bottom>p{max-width:100%;font-size:16px}.hero-bottom>div{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 22px;align-items:center}.hero-bottom .text-link{font-size:11px;margin:0}.hero-fineprint{grid-column:1/-1;margin-top:15px}
+.hero-motto{font-size:24px}.hero-topline{font-size:8px;margin-bottom:30px}.mafia-home .chapter{padding-block:65px}.mafia-home h2{font-size:46px}
+.family-definition{grid-template-columns:1fr;gap:28px}.chapter-index{flex-direction:row;justify-content:space-between;align-items:center;gap:20px}.annotation{font-size:20px}.definition-copy{max-width:100%;font-size:15px}
+.origin-layout{grid-template-columns:1fr 1.5fr;gap:40px;padding-block:65px}.origin-photo{max-width:235px}.photo-scribble{font-size:18px;right:-12px;top:-22px}.origin-copy h2{font-size:42px}.origin-copy>p:not(.eyebrow){font-size:14px}.origin-photo figcaption{font-size:9px}.spark-credit h3{font-size:26px}
+.global-heading{grid-template-columns:1fr;gap:0}.global-heading>p:not(.eyebrow){max-width:100%;margin-top:25px;font-size:15px}.network-caption{font-size:8px;padding:20px}.network-board{min-height:360px}.network-lines{height:260px}.network-footer{flex-direction:column;gap:8px}.hub-code{font-size:22px}.hub strong{font-size:9px}.hub-sg{left:78%}.hub-ber{left:69%}
+.godfather-layout{grid-template-columns:1fr 1.3fr;gap:40px;padding-block:60px}.godfather-title h2{font-size:48px}.godfather-copy>.large-copy{font-size:20px}.godfather-copy>p{font-size:14px}.family-offers>div{grid-template-columns:1fr;gap:8px}.family-emblem{font-size:75px;gap:10px}.family-emblem i{font-size:39px}
+.code-heading{grid-template-columns:1fr;gap:0}.code-heading>p:not(.eyebrow){margin-top:25px;font-size:15px}.code-list li{grid-template-columns:45px minmax(0,1fr) 35px;gap:22px}.code-list h3{font-size:29px}.code-list p{font-size:14px}.code-list b{font-size:29px}
+.join-family{padding-block:60px 45px}.join-heading h2{font-size:51px}.role-grid{gap:20px}.role-card{padding:24px}.role-card h3{font-size:36px}.role-card>p:not(.role-explainer):not(.role-fineprint){font-size:14px}.role-card .button{font-size:12px;padding-inline:17px;gap:14px}.role-card-top{margin-bottom:30px}.role-card-top>span:first-child{font-size:8px}.join-process{flex-direction:column;gap:12px}
+.closing-family{padding-block:60px}.closing-family>p:not(.eyebrow){font-size:62px}.public-site .form-layout{gap:35px}.public-site .form-paper{padding:26px}.public-site .form-story h1{font-size:56px}.public-site .footer-note{display:none}
+}
+@media(max-width:600px){
+.wrap{padding-inline:22px}.masthead{gap:15px;padding-block:19px}.brand-mafia img{width:33px;height:33px}.brand-mafia>span{font-size:18px}.masthead-tools{display:contents}.masthead nav{order:3;width:100%;justify-content:space-between;gap:10px;font-size:11px}.masthead>.motion-toggle,.masthead-tools>.motion-toggle{margin-left:auto;font-size:10px;min-height:36px}.masthead nav .button.small{padding:10px 13px;font-size:11px;gap:12px}
+.hero-topline{font-size:7px;letter-spacing:.06em;margin-bottom:30px}.mafia-hero{padding-block:20px 35px}.mafia-hero-grid{grid-template-columns:1fr;gap:28px}.mafia-hero h1{font-size:clamp(100px,25vw,151px)}.hero-motto{font-size:26px;margin-top:23px}.hero-right{width:250px;min-height:255px;margin:0 auto;padding:24px 6px 0 36px}.family-photo{width:200px}.family-photo img{height:182px}.legal-seal{width:112px;height:112px;left:0;top:0}
+.hero-bottom{margin-top:24px;gap:23px}.hero-bottom>p{font-size:15px}.hero-bottom>div{display:flex;align-items:flex-start;gap:0}.hero-bottom .button{min-width:0;width:100%;justify-content:space-between}.hero-bottom .text-link{font-size:11px;margin-top:6px}.hero-fineprint{margin-top:7px;font-size:10px}
+.family-ticker{padding-block:15px}.ticker-track>span{font-size:17px}.ticker-track i{font-size:19px;margin-inline:18px}.mafia-home .chapter{padding-block:55px}.mafia-home h2{font-size:clamp(36px,9vw,47px)}
+.chapter-index{font-size:8px}.annotation{font-size:18px}.definition-main h2{margin-bottom:26px}.definition-copy{font-size:14px}.legal-line{font-size:13px;gap:12px}
+.origin-layout{grid-template-columns:1fr;gap:45px;padding-block:55px}.origin-photo{max-width:205px;width:100%;margin:12px auto 0}.origin-photo img{aspect-ratio:4/4.4}.photo-scribble{font-size:19px;right:-25px}.origin-copy>p:not(.eyebrow){font-size:14px}.origin-copy h2{font-size:44px}.spark-credit p:not(.eyebrow){font-size:14px}
+.global-heading>p:not(.eyebrow){font-size:14px}.network-board{min-height:0;display:grid;grid-template-columns:1fr 1fr;padding:24px;gap:28px 22px;margin-top:30px}.network-caption{grid-column:1/-1;padding:0 0 18px;border-bottom:1px solid #566048;font-size:8px;line-height:1.6;display:block}.network-caption>span{display:block}.network-caption>span+span{margin-top:5px}.network-lines{display:none}.hub{position:relative!important;left:auto!important;top:auto!important;min-width:0;padding-left:19px}.hub-code{font-size:27px}.hub strong{font-size:11px}.hub-dot{top:8px}.network-footer p{font-size:11px}
+.godfather-layout{grid-template-columns:1fr;gap:33px;padding-block:55px}.godfather-title h2{font-size:53px;margin-bottom:22px}.family-emblem{display:none}.godfather-copy>.large-copy{font-size:21px}.role-note{font-size:9px!important}.family-offers>div{grid-template-columns:95px minmax(0,1fr);gap:18px}.family-offers dd{font-size:13px}.family-offers dt{font-size:9px}
+.code-heading>p:not(.eyebrow){font-size:14px}.code-list{margin-top:32px}.code-list li{grid-template-columns:26px minmax(0,1fr);gap:18px;padding-block:24px}.code-list li>span{font-size:21px;line-height:1.3}.code-list b{display:none}.code-list h3{font-size:27px}.code-list p{font-size:13px}.code-footnote{font-size:11px;line-height:1.8}
+.join-family{padding-block:50px 40px}.join-heading h2{font-size:44px;margin-bottom:30px}.role-grid{grid-template-columns:1fr;gap:22px}.role-card{padding:27px}.role-card h3{font-size:41px}.role-card .button{font-size:13px;min-height:50px}.role-card .role-fineprint{font-size:11px}.role-card-top{margin-bottom:27px}.role-card-top>span:first-child{font-size:9px}.join-process p{font-size:12px}.join-process .text-link{font-size:12px}
+.closing-family{padding-block:55px}.closing-family>p:not(.eyebrow){font-size:clamp(39px,10vw,58px)}.closing-family .eyebrow{font-size:9px}.closing-family .text-link{font-size:12px}
+.public-site .page-head{padding-block:40px 28px}.public-site .page-head h1{font-size:48px}.public-site .page-head>p{font-size:14px}.public-site .form-layout{grid-template-columns:1fr;padding-block:40px 55px;gap:28px}.public-site .form-story h1{font-size:52px}.public-site .form-story h1 br{display:block}.public-site .form-story h1 em{margin-left:0}.public-site .form-story>p:not(.eyebrow):not(.micro){font-size:14px;max-width:100%}.public-site .form-paper{padding:25px 20px}.public-site .form-grid{grid-template-columns:1fr;gap:0}.public-site .check{font-size:12px}.public-site .form-aside-note{display:none}.public-site .host-row{grid-template-columns:20px minmax(0,1fr) 44px;gap:12px}.public-site .circle-link{width:44px;height:44px}.public-site .host-person h3{font-size:29px}.public-site .footer{padding-block:35px;gap:25px}.footer-name{font-size:29px}.public-site .program-copy h2{font-size:31px}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}.public-site *, .public-site *::before,.public-site *::after{animation:none!important;transition:none!important}.reveal-ready .reveal{opacity:1;transform:none}.role-card:hover,.public-site .button:hover{transform:none}
+}
+@media print{.reveal-ready .reveal{opacity:1;transform:none}.motion-toggle{display:none}.public-site *{animation:none!important}.network-lines{display:none}}

@@ -1,10 +1,10 @@
-# Public-launch readiness — simplified Open Estia
+# Public-launch readiness — Greek Mafia
 
-**Works locally:** public host directory and builder journal; guest and host forms; private operator inbox; email/WhatsApp launch links; editable listings, free benefits, photos, stories and copy; persistent local storage; backup/restore; preserved historical records.
+**Works locally:** public Godfather directory and builder journal; Associate and Godfather forms; private operator inbox; email/WhatsApp launch links; editable listings, free benefits, photos, stories and copy; persistent local storage; backup/restore; preserved historical records.
 
-**Current limitations:** local-only development server, shared demo operator credentials, fictional host profiles, third-party photo permissions unverified, final privacy/operator details not supplied, and browser-based desktop/mobile verification pending. The source is prepared for the user-selected GitHub repository. The website has not been deployed and no messages have been sent.
+**Current limitations:** local-only development server, shared demo operator credentials, fictional Godfather profiles, third-party photo permissions unverified, final privacy/operator details not supplied, and browser-based desktop/mobile verification pending. The source is prepared for the user-selected GitHub repository. The website has not been deployed and no messages have been sent.
 
-Guest/host accounts, automated booking, capacity management, verification/reset email, reminders and offer expiry are intentionally removed. They are not missing launch integrations for this model.
+Member accounts, automated booking, capacity management, verification/reset email, reminders and offer expiry are intentionally removed. They are not missing launch integrations for this model.
 
 ## 1. Domain and hosting
 
@@ -44,14 +44,14 @@ Guest/host accounts, automated booking, capacity management, verification/reset 
 | Spam controls | Needs connection | Expected audience and abuse tolerance | Keep server validation; review trusted proxy/IP handling and adjust limits or add CAPTCHA only if needed | Rate-limit/spam tests on deployed host | Basic protection: yes; extra services optional |
 | Monitoring | Needs connection | Alert recipient and retention | Production process supervision, private logs, error monitoring, uptime checks and backup alerts | Simulate a failed request/restart and verify recovery/alerts | Yes |
 | Schedulers | Ready locally | No booking scheduler needed | No reminder/expiry jobs remain; only backups need operational scheduling | Requests leave old applications/outbox unchanged | No booking scheduler required |
-| Desktop/mobile QA | Not tested | Access to the browser preview or manual review | Browser automation was denied by security policy; current pages have server-rendered checks but no current screenshots | Check home, host, forms, confirmation and admin at desktop and narrow-phone sizes, including keyboard use | Yes before public launch |
+| Desktop/mobile QA | Not tested | Access to the browser preview or manual review | Browser automation was denied by security policy; current pages have server-rendered checks and motion-controller unit tests but no current screenshots | Check home, host, forms, confirmation and admin at desktop and narrow-phone sizes, including keyboard use | Yes before public launch |
 
 ## 5. Brand and programme readiness
 
 | Item | Current status | You supply/decide | Connect/change | Verify | Blocks? |
 |---|---|---|---|---|---|
-| Brand | Needs decision | Confirm Open Estia name, domain/social availability and relevant trademark review | Update branding if needed; original local vector/PNG kit exists | Name and assets consistent | Yes |
-| Real hosts | Needs decision | Approved real host details and commitments | Replace labelled samples in the operator editor; confirm dates, sleeping setup, accessibility and each free benefit | Host reviews the exact published page | Yes |
+| Brand | Needs decision | Confirm Greek Mafia name, domain/social availability and relevant trademark review | Update branding if needed; original local SVG mark and wordmark exist | Name and assets consistent | Yes |
+| Real Godfathers | Needs decision | Approved real Godfather details and commitments | Replace labelled samples in the operator editor; confirm dates, sleeping setup, accessibility and each free benefit | Host reviews the exact published page | Yes |
 | Photographs | Needs decision | Rights for Philoxenia/YC/Mistral reference images or replacements | Obtain permission covering the use or replace in the local code/editor before public use | Written permission / licence and accurate credits | Yes for these images |
 | Privacy and terms | Needs decision | Operator identity, contact, retention/deletion policy and final programme rules | Review current draft, add final details and record real consent appropriately | Form disclosures match actual handling | Yes |
 | Editorial upkeep | Ready locally | Who selects stories and how often | Edit dated summaries, sources and photos in Journal; no automated feed | Links and dates are accurate; old stories marked clearly | Operational decision |
@@ -59,7 +59,7 @@ Guest/host accounts, automated booking, capacity management, verification/reset 
 
 ## Connection order
 
-1. **First action: open /admin and replace or pause the sample host profiles.** Confirm the real offers and collect approved photos.
+1. **First action: open /admin and replace or pause the sample Godfather profiles.** Confirm the real offers and collect approved photos.
 2. Confirm the name, public support contact, programme/privacy rules, image permissions and the real operator credentials.
 3. Choose a Python hosting target with persistent storage; configure domain, HTTPS, production server, trusted hosts and secure sessions.
 4. Transfer selected records and files, configure backups/monitoring and verify a clean restore. Confirm your personal email/WhatsApp follow-up process.

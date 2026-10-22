@@ -2,13 +2,13 @@
 
 ## Active runtime
 
-Flask server-rendered pages, SQLite and local image files. `app.py` defines the public directory, journal, two intake forms and operator routes. `store.py` owns the new tables and one-way, non-destructive import. `intake_seed.py` contains initial copy and editable sample content. `operations.py` and `manage.py` provide local backup, restore, reset and operator credential management.
+Flask server-rendered pages, SQLite and local image files. `app.py` defines the Godfather directory, journal, two intake forms and operator routes. `store.py` owns the new tables and one-way, non-destructive import. `intake_seed.py` contains initial copy and editable sample content. `operations.py` and `manage.py` provide local backup, restore, reset and operator credential management.
 
-There is no JavaScript dependency and no outgoing request during normal operation. External stories and contact links open only when the user chooses them.
+The core forms work without JavaScript. A small local motion controller progressively enhances the public pages. There is no outgoing request during normal operation. External stories and contact links open only when the user chooses them.
 
 ## Public flow
 
-`Guest form or host form → saved private inquiry → confirmation`
+`Associate form or Godfather form → saved private inquiry → confirmation`
 
 A generated submission key makes retries idempotent, including simultaneous requests. CSRF tokens and submission keys are tied to the browser session. Contact inputs, links, required fields and size limits are checked on the server. A honeypot and 15-minute request limits reduce basic spam. A paused listing cannot accept a new inquiry referencing it; open-ended inquiries remain available.
 
@@ -20,7 +20,7 @@ No participant identity or account is created. The operator is the only authenti
 
 These are manually editable labels with no automatic side effects. They do not reserve accommodation or notify anyone. Notes and raw submissions are visible only after operator authentication. Email and WhatsApp links open a draft/conversation; sending remains a user action.
 
-Listings and journal entries have `draft`, `published` and `paused` states. Only published entries and their uploaded images are publicly accessible. Operators can preview hidden profiles. Exact addresses, host contacts and private notes never enter public templates.
+Godfather profiles (internally called listings) and journal entries have `draft`, `published` and `paused` states. Only published entries and their uploaded images are publicly accessible. Operators can preview hidden profiles. Exact addresses, host contacts and private notes never enter public templates.
 
 ## Permissions
 
@@ -48,3 +48,7 @@ Earlier confirmed applications map to Arranged. Completed/declined/cancelled/wit
 Uploaded images are decoded, bounded, stripped of metadata and saved as WebP under random names outside static storage. Their public route checks whether a published entry references them. Existing unused files remain in backups; no automatic file deletion is attempted.
 
 No production host, separate admin domain, email provider, WhatsApp API, job scheduler or managed authentication service is needed for the local workflow. A separate admin domain is optional later. Public deployment requires deliberate changes to the loopback-only base URL/host configuration and a maintained production server, as documented in READINESS.md.
+
+## Greek Mafia compatibility
+
+The stored `guest`/`host` roles render as Associate/Godfather. Canonical public routes are `/join`, `/become-a-godfather`, `/godfathers` and `/godfathers/<id>`; the previous routes remain usable aliases. A Godfather profile may omit accommodation. Empty sleeping text renders an explicit no-accommodation message. No data-table rewrite is needed for the rebrand. Existing operator credentials and historical records remain unchanged.

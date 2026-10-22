@@ -4,14 +4,14 @@ These files are bundled locally at the user's request. Normal page loads make no
 
 ## Community photographs
 
-Source: [Philoxenia by Hustle Hours](https://philoxenia.hustlehours.com/el/). The homepage uses the park photo with a visible source credit identifying the community as the inspiration, not Open Estia participants. The night photo remains in the local asset collection.
+Source: [Philoxenia by Hustle Hours](https://philoxenia.hustlehours.com/el/). The homepage uses the park and night photos with visible source credits identifying Philoxenia as the inspiration, not Greek Mafia participants.
 
 | Local file | Original |
 |---|---|
 | static/images/philoxenia-community-night.webp | https://philoxenia.hustlehours.com/images/alumni-6-640-1722ae7f7b2f.webp |
 | static/images/philoxenia-community-park.webp | https://philoxenia.hustlehours.com/images/alumni-7-640-c987f9015262.webp |
 
-The original 640 × 853 files are unchanged. The responsive layout may crop them within the displayed frame.
+The original 640 × 853 files are unchanged. The responsive layout may crop them within the displayed frame. Original source files remain unchanged.
 
 ## Journal stories
 
@@ -23,4 +23,4 @@ The original 640 × 853 files are unchanged. The responsive layout may crop them
 
 The original articles were opened and read on October 20, 2026 (America/Los_Angeles). Summaries are short, original Greek paraphrases. Groww is explicitly presented as an archive story. The source links, dates and image credits are visible on the website. No collaboration, endorsement, hosting opportunity or current job offer is implied.
 
-Exact download URLs, credit labels and SHA-256 hashes are recorded in `editorial-photo-sources.json`. These reference images are separate from the original Open Estia brand assets.
+Exact download URLs, credit labels and SHA-256 hashes are recorded in `editorial-photo-sources.json`. These reference images are separate from the original Greek Mafia brand assets.

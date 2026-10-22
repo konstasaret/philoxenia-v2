@@ -1,0 +1,35 @@
+{
+  "pages_checked": 38,
+  "public_routes": [
+    "/",
+    "/godfathers",
+    "/join",
+    "/become-a-godfather",
+    "/explore",
+    "/journal",
+    "/apply",
+    "/become-a-host",
+    "/program",
+    "/admin/login",
+    "/homes/1",
+    "/homes/2",
+    "/homes/3",
+    "/godfathers/1",
+    "/godfathers/2",
+    "/godfathers/3"
+  ],
+  "heading_check": "One h1 per page",
+  "form_check": "Labelled controls and no nested forms",
+  "link_check": "All local links and assets resolve",
+  "contrasts": {
+    "body": 15.13,
+    "muted": 5.61,
+    "rust": 5.57,
+    "ink button": 15.13,
+    "olive button": 12.95,
+    "coral seal": 6.76,
+    "dark supporting copy": 11.97
+  },
+  "visual_review": "Pending: browser policy restriction; this is structural/server-rendered evidence, not screenshot evidence.",
+  "privacy": "No live records changed; audit used a temporary database copy."
+}
