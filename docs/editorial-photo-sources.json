@@ -1,0 +1,26 @@
+[
+  {
+    "file": "static/images/builders-nowadays.jpeg",
+    "url": "https://www.ycombinator.com/blog/content/images/2026/10/IMG_5624-1.jpeg",
+    "source": "https://www.ycombinator.com/blog/how-vin-bui-became-engineer-1-at-nowadays-and-started-treating-it-like-his-own-company",
+    "credit": "Nowadays / Y Combinator",
+    "sha256": "4769bcd89c6cce368910f744c2b49cdc62b56bd52e5295cab1d961d120628a2a",
+    "permission": "Local reference only; public reuse permission not verified"
+  },
+  {
+    "file": "static/images/builders-mistral.webp",
+    "url": "https://mistral.ai/_astro/Linkedin_Mistral02%20%281%29_9tFqU.webp?dpl=6ad7d2609d879d2481cef4a7",
+    "source": "https://mistral.ai/news/hallo-deutschland/",
+    "credit": "Mistral",
+    "sha256": "547a1d82f56a7577f80bc9b356bf1640b4f59ca2bbf9eadce6a0fc37ba33e510",
+    "permission": "Local reference only; public reuse permission not verified"
+  },
+  {
+    "file": "static/images/builders-groww.png",
+    "url": "https://www.ycombinator.com/blog/content/images/2025/11/Screenshot-2025-11-10-at-1.19.34-PM.png",
+    "source": "https://www.ycombinator.com/blog/groww/",
+    "credit": "Groww / Y Combinator",
+    "sha256": "b59b2fdf19fc3de860b9a3d7c3fa8f2e7f0e66d642294a3ee2aa62b5e20edb1f",
+    "permission": "Local reference only; public reuse permission not verified"
+  }
+]

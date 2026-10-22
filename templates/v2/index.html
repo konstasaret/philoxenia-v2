@@ -1,0 +1,74 @@
+{% extends 'v2/base.html' %}
+{% from 'v2/macros.html' import host_row with context %}
+{% block content %}
+<div class="movement-home">
+  <section class="opening wrap" aria-labelledby="opening-title">
+    <p class="eyebrow"><span class="little-star" aria-hidden="true">✳</span> Greek roots. Open doors. Everywhere.</p>
+    <h1 id="opening-title" lang="en">A bigger world.<br>A <span class="marked-word">familiar face.</span></h1>
+    <div class="opening-bottom">
+      <div class="opening-letter">
+        <p class="opening-intro">{{ content.hero_intro }}</p>
+        <p>Ξεκινάμε από την ελληνική κοινότητα. Η πόρτα είναι ανοιχτή σε κάθε builder που θέλει να μάθει, να δοκιμάσει και να προσφέρει κι αυτός κάτι στην παρέα.</p>
+        <div class="actions"><a class="button" href="/apply">Θέλω να γνωριστούμε <span aria-hidden="true">↗</span></a><a class="underlink" href="#our-story">Διάβασε την ιστορία μας ↓</a></div>
+        <p class="small-print">Δωρεάν φιλοξενία · Για builders 18+ · Προσωπική συνεννόηση</p>
+      </div>
+      <figure class="opening-photo">
+        <img src="/static/images/philoxenia-community-park.webp" alt="Τρεις φίλοι μαζί σε πάρκο στο San Francisco, από τη Philoxenia" width="640" height="853" fetchpriority="high">
+        <figcaption>Μια παρέα, στην άλλη άκρη του κόσμου.<br><a href="https://philoxenia.hustlehours.com/el/" target="_blank" rel="noopener noreferrer">Φωτογραφία: Philoxenia by Hustle Hours ↗</a></figcaption>
+      </figure>
+    </div>
+    <div class="opening-foot"><span lang="en">Find your people and build</span><span lang="en">A small beginning. An open invitation.</span></div>
+  </section>
+
+  <section class="story-chapter wrap" id="our-story" aria-labelledby="origin-title">
+    <div class="chapter-label"><span>01 — THE SPARK</span><span class="spark-drawing" aria-hidden="true">✳</span></div>
+    <div class="chapter-body">
+      <h2 id="origin-title" lang="en">They lit the spark.<br>We want to carry<br><span class="accent">the flame.</span></h2>
+      <div class="reading-copy"><p>{{ content.origin }}</p><p>Μας έμεινε μια απλή σκέψη: τι θα γινόταν αν αυτή η φιλοξενία ταξίδευε κι άλλο; Αν ένας άνθρωπος σε κάθε πόλη έκανε λίγο χώρο για κάποιον που τώρα ξεκινά;</p><a class="underlink" href="https://philoxenia.hustlehours.com/el/" target="_blank" rel="noopener noreferrer">Η ιστορία της Philoxenia, με τα δικά τους λόγια ↗</a></div>
+    </div>
+  </section>
+
+  <section class="bigger-room" aria-labelledby="dream-title">
+    <div class="wrap room-layout">
+      <div><p class="eyebrow">For the thing you can't stop thinking about.</p><h2 id="dream-title" lang="en">Maybe your dream<br>needs a<br><em>bigger room.</em></h2></div>
+      <div class="room-note"><span class="note-arrow" aria-hidden="true">↗</span><p>{{ content.manifesto }}</p><p>Να δεις πώς δουλεύουν. Τι δοκίμασαν και δεν πέτυχε. Τι θα έκαναν αλλιώς. Να συζητήσεις την ιδέα σου στο τραπέζι της κουζίνας, όσο εκείνοι φτιάχνουν καφέ.</p><p class="room-last">Και να γυρίσεις με μια πιο μεγάλη εικόνα του τι μπορείς να κάνεις.</p></div>
+    </div>
+  </section>
+
+  <section class="world-chapter wrap" id="movement" aria-labelledby="world-title">
+    <p class="eyebrow">02 — THE WORLD WE WANT TO BUILD</p>
+    <div class="world-layout">
+      <div class="world-copy"><h2 id="world-title" lang="en">Not one house.<br>A world of<br><span class="accent">open doors.</span></h2><p>Θέλουμε σπίτια builders σε όλο τον κόσμο. Να μπορείς να μείνεις με έναν εξαιρετικό engineer, έναν founder που χτίζει τη startup του, κάποιον με εμπειρία σε big tech ή μια scale-up. Ίσως και έναν VC που θέλει να μοιραστεί όσα έχει μάθει.</p><p>Το κοινό τους; Να έχουν κάτι να σου δείξουν και τη διάθεση να σε βάλουν για λίγο στην καθημερινότητά τους.</p><p class="honest-note">Αυτό είναι το δίκτυο που θέλουμε να χτίσουμε. Ξεκινάμε μικρά, γνωρίζοντας κάθε host προσωπικά. Δεν υπάρχουν ακόμη επιβεβαιωμένα σπίτια σε όλες αυτές τις πόλεις.</p></div>
+      <div class="world-postcard" aria-label="Πόλεις όπου θέλουμε να μεγαλώσει η κοινότητα, όχι επιβεβαιωμένες τοποθεσίες φιλοξενίας">
+        <p class="postcard-label">A FEW PLACES WE COULD GO</p>
+        <svg class="connection-thread" viewBox="0 0 420 480" fill="none" aria-hidden="true"><path d="M83 43C338-14 381 98 245 147S27 171 88 256 377 263 315 366 182 396 192 459" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 6"/><circle cx="83" cy="43" r="5" fill="currentColor"/><circle cx="245" cy="147" r="5" fill="currentColor"/><circle cx="88" cy="256" r="5" fill="currentColor"/><circle cx="315" cy="366" r="5" fill="currentColor"/></svg>
+        <div class="city-note city-one"><span>START SOMEWHERE</span><strong lang="en">Athens</strong></div>
+        <div class="city-note city-two"><span>FOLLOW YOUR CURIOSITY</span><strong lang="en">San Francisco</strong></div>
+        <div class="city-note city-three"><strong lang="en">London. Berlin.</strong></div>
+        <div class="city-note city-four"><strong lang="en">Singapore.</strong></div>
+        <a class="city-note city-yours" href="/become-a-host"><strong lang="en">Your city? ↗</strong><span>Η ΕΠΟΜΕΝΗ ΠΟΡΤΑ ΜΠΟΡΕΙ ΝΑ ΕΙΝΑΙ Η ΔΙΚΗ ΣΟΥ.</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="people-chapter wrap" id="people" aria-labelledby="people-title">
+    <div class="chapter-heading"><div><p class="eyebrow">03 — PEOPLE YOU COULD STAY WITH</p><h2 id="people-title" lang="en">People first.<br>Spare room second.</h2></div><p>Ο άνθρωπος κάνει τη διαφορά. Ο καναπές αρκεί για να ξεκινήσει η ιστορία.</p></div>
+    <div class="host-list">{% for host in listings[:3] %}{{ host_row(host,loop.index) }}{% else %}<div class="empty"><h3 lang="en">Be the first open door.</h3><p>Γνωρίζουμε τους πρώτους hosts. Αν θέλεις να φιλοξενήσεις, θα χαρούμε να μιλήσουμε.</p><a href="/become-a-host">Πες μας για εσένα ↗</a></div>{% endfor %}</div>
+    <div class="people-foot"><p class="small-print">Τα ενδεικτικά προφίλ δείχνουν πώς μπορεί να μοιάζει μια διαμονή. Δεν είναι επιβεβαιωμένες προσφορές φιλοξενίας.</p><a class="underlink" href="/explore">Όλα τα προφίλ ↗</a></div>
+  </section>
+
+  <section class="invitation-band" aria-labelledby="invitation-title"><div class="wrap invitation-layout"><div><p class="eyebrow">THERE IS ROOM FOR YOU HERE.</p><h2 id="invitation-title" lang="en">Come as you are.<br>Bring what<br>you're building.</h2></div><div class="invitation-copy"><p>Δεν χρειάζεται να έχεις εταιρεία, χρηματοδότηση ή έτοιμες απαντήσεις. Μπορεί να είναι ένα prototype, ένα side project ή μια ιδέα που προσπαθείς σοβαρά να κάνεις πράξη.</p><p>Πες μας τι σε κρατά ξύπνιο, τι θέλεις να μάθεις και πού θα ήθελες να πας. Από εκεί αρχίζει η γνωριμία.</p><a class="button" href="/apply">Πες μας τι χτίζεις <span aria-hidden="true">↗</span></a><a class="underlink host-invite" href="/become-a-host">Έχω χώρο και θέλω να φιλοξενήσω ↗</a></div></div></section>
+
+  <section class="how-chapter wrap" id="how-it-works" aria-labelledby="how-title">
+    <p class="eyebrow">04 — THE PRACTICAL PART</p><h2 id="how-title" lang="en">A form. A conversation.<br>Then, a plan.</h2>
+    <ol class="human-steps"><li><span aria-hidden="true">01</span><h3 lang="en">Tell us a little.</h3><p>Μία σύντομη φόρμα, είτε θέλεις να μείνεις είτε να φιλοξενήσεις. Χωρίς λογαριασμό ή βιογραφικό που πρέπει να εντυπωσιάσει.</p></li><li><span aria-hidden="true">02</span><h3 lang="en">Let's talk.</h3><p>Διαβάζουμε όσα έγραψες και μιλάμε με email ή WhatsApp. Βλέπουμε μαζί αν υπάρχει άνθρωπος και χρόνος που ταιριάζει.</p></li><li><span aria-hidden="true">03</span><h3 lang="en">Agree together.</h3><p>Πριν ταξιδέψεις, συμφωνούμε με τον host τις ημερομηνίες, πού θα κοιμάσαι και τι προσφέρεται. Η αίτηση από μόνη της δεν είναι κράτηση.</p></li></ol>
+    <div class="offer-sheet"><div><p class="eyebrow">LET'S BE CLEAR WITH EACH OTHER.</p><h3 lang="en">A place to begin.<br>No hidden promises.</h3><p>Η φιλοξενία και ό,τι προσφέρει ο host είναι δωρεάν. Χωρίς fees, ποσοστά ή υποχρέωση να δουλέψεις για εκείνον.</p><a class="underlink" href="/program">Όλες οι πρακτικές λεπτομέρειες ↗</a></div><dl class="offer-list"><div><dt lang="en">A place to sleep</dt><dd>Καναπές ή κρεβάτι, όπως περιγράφεται στο προφίλ. Ξέρεις τι να περιμένεις πριν πεις ναι.</dd></div><div><dt lang="en">Time & everyday help</dt><dd>Παρέα, feedback, ένα τραπέζι για δουλειά ή βοήθεια στην πόλη — όσα έχει συμφωνήσει ο συγκεκριμένος host.</dd></div><div><dt lang="en">The extras</dt><dd>Φαγητό σε events, gym passes και introductions μόνο όπου είναι διαθέσιμα, με συνεννόηση. Δεν είναι πακέτο παροχών.</dd></div><div><dt lang="en">Your own arrangements</dt><dd>Εισιτήρια, visa, ασφάλιση και τα υπόλοιπα προσωπικά σου έξοδα είναι δική σου ευθύνη. Δεν υποσχόμαστε δουλειά, επένδυση ή πρόσβαση σε εταιρείες.</dd></div></dl></div>
+  </section>
+
+  <section class="about-letter wrap" id="about" aria-labelledby="about-title"><div class="about-margin"><p class="eyebrow">05 — A NOTE FROM US</p><img src="/static/brand/favicon.svg" width="74" height="74" alt="" aria-hidden="true"></div><div><h2 id="about-title" lang="en">We want to know<br>our people.</h2><div class="reading-copy"><p>Το Open Estia ξεκινά από την επιθυμία να έρθει πιο κοντά η ελληνική κοινότητα, όπου κι αν βρίσκεται. Να μπορούμε να ζητήσουμε βοήθεια, να δώσουμε λίγη από τη δική μας εμπειρία και να χαρούμε με την πρόοδο του άλλου.</p><p>Δεν έχουμε όλες τις πόρτες ανοιχτές ούτε όλες τις απαντήσεις. Θέλουμε να ξεκινήσουμε με λίγους ανθρώπους που εννοούν το «έλα να μείνεις», και να το κάνουμε καλά.</p><p>Η φιλοδοξία είναι παγκόσμια. Η αρχή είναι προσωπική. Ένα σπίτι, μία γνωριμία, μία κουβέντα τη φορά.</p><p class="letter-signoff" lang="en">See you around the kitchen table,<br><strong>Open Estia</strong></p></div></div></section>
+
+  {% if stories %}<section class="reading-chapter wrap" id="journal" aria-labelledby="journal-title"><div class="chapter-heading"><div><p class="eyebrow">A LITTLE INSPIRATION FOR THE WAY</p><h2 id="journal-title" lang="en">Others started somewhere, too.</h2></div><a class="underlink" href="/journal">The journal ↗</a></div><div class="reading-list">{% for story in stories %}<article><a class="reading-thumb" href="{{ story.source_url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ story.title }} — {{ story.source_name }} (new tab)">{% if story.image %}<img src="{{ image_url(story.image) }}" alt="{{ story.image_alt }}" width="240" height="160" loading="lazy">{% else %}<span aria-hidden="true">↗</span>{% endif %}</a><div><p class="reading-meta">{{ story.city }} · {{ date_label(story.published_on) }}</p><h3 lang="en"><a href="{{ story.source_url }}" target="_blank" rel="noopener noreferrer">{{ story.title }}</a></h3><p>{{ story.summary }}</p><small>{{ story.source_name }}{% if story.image_credit %} · Photo: {{ story.image_credit }}{% endif %}</small></div></article>{% endfor %}</div><p class="small-print">Ιστορίες από εξωτερικές πηγές, όχι προφίλ hosts ή συνεργατών μας.</p></section>{% endif %}
+
+  <section class="last-door wrap"><p class="eyebrow">WHEREVER YOU ARE, LET'S START THERE.</p><h2 lang="en">The next door<br>could be <em>yours.</em></h2><div class="actions"><a class="button" href="/become-a-host">Άνοιξε την πόρτα σου ↗</a><a class="underlink" href="/apply">Ή έλα να γνωρίσεις τη δική μας παρέα ↗</a></div></section>
+</div>
+{% endblock %}
