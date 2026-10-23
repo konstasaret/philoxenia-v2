@@ -28,11 +28,11 @@ Pause/resume and state labels; reduced-motion settings; no IntersectionObserver 
 
 All seven sampled text/background pairs exceed 4.5:1. Results are in `mafia-render-checks.json`. These are source and server-rendered checks, not proof of visual alignment, clipping or animation appearance.
 
-## Remaining visual review
+## Manual visual review
 
-Desktop/mobile browser review is **pending**. Browser security previously denied localhost automation and prohibited retry/alternate browser paths. No workaround was used.
+On October 22, 2026, the owner confirmed that the homepage layout, animations, motion button and both forms display correctly at desktop and narrow-phone widths. This completes the local redesign visual check.
 
-Inspect the homepage at desktop and narrow-phone widths: hero lettering, seal/photo overlap, ticker, story, network, role cards, focus and the Pause motion control. Then inspect both forms, errors, confirmation, a Godfather profile without accommodation and the private inbox. Motion-controller unit checks do not replace this review.
+The confirmation is owner-reported manual verification. Browser automation was restricted; no workaround or automated screenshots were used. This confirmation does not claim visual coverage of the private inbox, profile variants or every validation state. Functional coverage for those flows is recorded above; a full deployed-site review remains part of any future public launch.
 
 ## Source and data boundary
 

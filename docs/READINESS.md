@@ -2,7 +2,7 @@
 
 **Works locally:** public Godfather directory and builder journal; Associate and Godfather forms; private operator inbox; email/WhatsApp launch links; editable listings, free benefits, photos, stories and copy; persistent local storage; backup/restore; preserved historical records.
 
-**Current limitations:** local-only development server, shared demo operator credentials, fictional Godfather profiles, third-party photo permissions unverified, final privacy/operator details not supplied, and browser-based desktop/mobile verification pending. The source is prepared for the user-selected GitHub repository. The website has not been deployed and no messages have been sent.
+**Current limitations:** local-only development server, shared demo operator credentials, fictional Godfather profiles, third-party photo permissions unverified, final privacy/operator details not supplied. The owner confirmed the local homepage layout, animations, motion control and both forms at desktop and narrow-phone widths on October 22, 2026. The source is prepared for the user-selected GitHub repository. The website has not been deployed and no messages have been sent.
 
 Member accounts, automated booking, capacity management, verification/reset email, reminders and offer expiry are intentionally removed. They are not missing launch integrations for this model.
 
@@ -44,7 +44,7 @@ Member accounts, automated booking, capacity management, verification/reset emai
 | Spam controls | Needs connection | Expected audience and abuse tolerance | Keep server validation; review trusted proxy/IP handling and adjust limits or add CAPTCHA only if needed | Rate-limit/spam tests on deployed host | Basic protection: yes; extra services optional |
 | Monitoring | Needs connection | Alert recipient and retention | Production process supervision, private logs, error monitoring, uptime checks and backup alerts | Simulate a failed request/restart and verify recovery/alerts | Yes |
 | Schedulers | Ready locally | No booking scheduler needed | No reminder/expiry jobs remain; only backups need operational scheduling | Requests leave old applications/outbox unchanged | No booking scheduler required |
-| Desktop/mobile QA | Not tested | Access to the browser preview or manual review | Browser automation was denied by security policy; current pages have server-rendered checks and motion-controller unit tests but no current screenshots | Check home, host, forms, confirmation and admin at desktop and narrow-phone sizes, including keyboard use | Yes before public launch |
+| Desktop/mobile QA | Owner-confirmed locally | Review the eventual deployed site | Owner confirmed local homepage layout, animations, motion control and both forms at desktop and narrow-phone widths on October 22, 2026; no automated screenshots | Before public launch, check home, host, forms, confirmation and admin on the deployment, including keyboard use | Deployment review: yes |
 
 ## 5. Brand and programme readiness
 

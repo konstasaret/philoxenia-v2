@@ -30,6 +30,18 @@
     "coral seal": 6.76,
     "dark supporting copy": 11.97
   },
-  "visual_review": "Pending: browser policy restriction; this is structural/server-rendered evidence, not screenshot evidence.",
-  "privacy": "No live records changed; audit used a temporary database copy."
+  "visual_review": "Owner confirmed homepage layout, animations, motion button and both forms at desktop and narrow-phone widths on 2026-10-22. This is separate manual evidence; the page checks in this report are structural/server-rendered, not screenshots.",
+  "privacy": "No live records changed; audit used a temporary database copy.",
+  "manual_review": {
+    "date": "2026-10-22",
+    "reviewer": "owner",
+    "result": "Everything displays correctly",
+    "scope": [
+      "Homepage layout at desktop and narrow-phone widths",
+      "Animations",
+      "Motion button",
+      "Associate and Godfather forms"
+    ],
+    "automated_browser_review": false
+  }
 }
