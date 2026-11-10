@@ -18,6 +18,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from store import atomic, close_db, db, execute, init_db, insert, one, rows, settings, stamp, update
 from intake_seed import DEFAULT_CONTENT, seed
+from brand import display_content
 from sample_content import BENEFIT_LABELS
 
 ROOT=Path(__file__).resolve().parent
@@ -96,7 +97,7 @@ def create_app(test_config=None):
 
     @app.context_processor
     def context():
-        return dict(operator=g.operator,csrf=session['csrf'],content=settings(),states=STATES,
+        return dict(operator=g.operator,csrf=session['csrf'],content=display_content(settings(),DEFAULT_CONTENT),states=STATES,
             role_labels={'guest':'Associate','host':'Godfather','support':'Previous report'},benefit_names=BENEFIT_LABELS,benefit_keys=BENEFITS,parse_json=json.loads,image_url=image_url,
             is_admin=request.path.startswith('/admin'),valid_url=public_url,
             date_label=lambda value:date.fromisoformat(value[:10]).strftime('%d %b %Y') if value else '')
@@ -123,27 +124,27 @@ def create_app(test_config=None):
             else: execute('INSERT OR REPLACE INTO intake_limits VALUES(?,?,?)',(key,1,(now+timedelta(minutes=15)).isoformat()))
 
     def published_listings(): return rows("SELECT * FROM listings WHERE status='published' ORDER BY position,id")
-    def published_stories(): return rows("SELECT * FROM stories WHERE status='published' ORDER BY position,published_on DESC,id")
 
     @app.get('/')
-    def index(): return render_template('v2/index.html',listings=published_listings(),stories=published_stories()[:3])
+    def index(): return render_template('v2/index.html',listings=published_listings())
 
     @app.get('/explore')
     @app.get('/godfathers')
     def explore():
-        city=request.args.get('city','')
-        listings=[h for h in published_listings() if not city or h['city']==city]
-        return render_template('v2/explore.html',listings=listings,city=city,cities=rows("SELECT DISTINCT city FROM listings WHERE status='published' ORDER BY city"))
+        city=request.args.get('city','').strip()
+        published=published_listings()
+        listings=[h for h in published if not city or h['city']==city]
+        return render_template('v2/explore.html',listings=listings,city=city,cities=sorted({h['city'] for h in published if h['city'].strip()}))
 
     @app.get('/homes/<int:listing_id>')
     @app.get('/godfathers/<int:listing_id>')
     def home(listing_id):
         listing=one('SELECT * FROM listings WHERE id=?',(listing_id,))
-        if not listing or (listing['status']!='published' and not g.operator): abort(404)
-        return render_template('v2/home.html',listing=listing)
+        if not listing or listing['status']!='published': abort(404)
+        return redirect(url_for('explore',_anchor='godfather-'+str(listing_id)))
 
     @app.get('/journal')
-    def journal(): return render_template('v2/journal.html',stories=published_stories())
+    def journal(): return redirect(url_for('index'))
 
     def new_form_key():
         token=secrets.token_urlsafe(32)
@@ -162,13 +163,13 @@ def create_app(test_config=None):
                 return redirect(url_for('thanks'))
             limited('inquiry',20)
             if values.get('website'): abort(400,'Δεν ήταν δυνατή η αποστολή.')
-            for key,label,minimum,maximum in [('name','Το όνομά σου',2,120),('email','Email',3,254),('message','Λίγα λόγια',10,5000)]:
+            for key,label,minimum,maximum in [('name','Το όνομά σου',2,120),('email','Email',3,254),('message','Το pitch σου',10,5000)]:
                 values[key]=values.get(key,'').strip()
                 if not minimum<=len(values[key])<=maximum: errors[key]=label+': συμπλήρωσε από '+str(minimum)+' έως '+str(maximum)+' χαρακτήρες.'
             if not re.fullmatch(r"[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+",values.get('email','')): errors['email']='Γράψε ένα έγκυρο email.'
             phone=values.get('phone','').strip()
             normalized=re.sub(r'[ ()-]','',phone)
-            if phone and not re.fullmatch(r'\+[1-9]\d{6,14}',normalized): errors['phone']='Πρόσθεσε τον κωδικό χώρας, π.χ. +30 691 234 5678.'
+            if not re.fullmatch(r'\+[1-9]\d{6,14}',normalized): errors['phone']='Πρόσθεσε τον κωδικό χώρας, π.χ. +30 691 234 5678.'
             for key,maximum in [('city',120),('dates',200),('links',1500)]:
                 values[key]=values.get(key,'').strip()
                 if len(values[key])>maximum: errors[key]='Το κείμενο είναι πολύ μεγάλο.'
@@ -256,7 +257,7 @@ def create_app(test_config=None):
             return redirect(url_for('inquiry',inquiry_id=inquiry_id))
         phone=re.sub(r'\D','',item['phone'])
         return render_template('v2/inquiry.html',item=item,legacy=json.loads(item['legacy_json']),
-            email_link='mailto:'+quote(item['email'],safe='@')+'?subject='+quote('Greek Mafia · '+item['name']),
+            email_link='mailto:'+quote(item['email'],safe='@')+'?subject='+quote('The Godfather · '+item['name']),
             whatsapp_link='https://wa.me/'+phone if phone else '')
 
     def editor_values(keys): return {k:request.form.get(k,'').strip() for k in keys}
@@ -312,9 +313,13 @@ def create_app(test_config=None):
         values=dict(saved) if saved else dict(status='draft',position=10,benefits='{}',sample=0)
         errors={}
         if request.method=='POST':
-            values.update(editor_values(('name','headline','city','area','background','sleeping','shared','accessibility','rules','commitments','availability','status','position','contact_email','contact_phone','address','private_notes','image_alt','image_credit')))
+            values.update(editor_values(('name','headline','city','area','background','sleeping','shared','accessibility','rules','commitments','availability','status','position','contact_email','contact_phone','address','private_notes','image_alt','image_credit','linkedin_url')))
             values['sample']=int(request.form.get('sample')=='1')
             errors=validate_editor(values,('name','headline','city','background','availability'))
+            if values.get('linkedin_url') and (not public_url(values['linkedin_url']) or urlsplit(values['linkedin_url']).scheme!='https' or urlsplit(values['linkedin_url']).hostname not in ('linkedin.com','www.linkedin.com') or not urlsplit(values['linkedin_url']).path.startswith('/in/')):
+                errors['linkedin_url']='Use a complete https://www.linkedin.com/in/ profile link.'
+            if values.get('status')=='published' and not values.get('sleeping'):
+                errors['sleeping']='Describe the air mattress, couch or room before publishing this Godfather.'
             benefits={}
             for key in BENEFITS:
                 state=request.form.get('benefit_'+key,'unavailable')

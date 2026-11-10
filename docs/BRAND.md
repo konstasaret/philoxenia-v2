@@ -22,13 +22,13 @@ The homepage deliberately focuses on joining the network. The dated builder jour
 
 ## Design and motion
 
-The look draws on a printed manifesto and a contemporary family club: oversized tightly spaced typography, an original connected monogram, small candid community photographs, confident rules and generous space.
+The look draws on a printed manifesto and a contemporary family club: oversized tightly spaced typography, an original fedora-and-bow-tie mark, small candid community photographs, confident rules and generous space.
 
 Colors: ink #171B17, ivory #F2EFE4, electric olive #D4E879, coral #F58063, readable rust #A53C26, muted text #5B6055. Display lettering uses system Arial Black/Arial with Georgia italics. No remote fonts or images load at runtime.
 
 `mafia.css` styles the new identity; `editorial.css` supplies shared forms and operator foundations. `mafia.js` progressively enables a moving type strip, rotating legal seal, animated network connections and scroll entrances. A motion pause/play button stops decoration. Reduced-motion preferences disable animation and reveal content; no-JavaScript or controller-failure paths retain a readable static page. Print and keyboard-focus handling also reveal content.
 
-Current original vector assets are `static/brand/greek-mafia-mark.svg` and `greek-mafia-wordmark.svg`. The mark uses vector paths for three connected members; no raster image is embedded. Prior Open Estia assets remain recoverable in Git history.
+Current original vector assets are `static/brand/greek-mafia-mark.svg` and `greek-mafia-wordmark.svg`. The mark uses original vector paths for a fedora and bow tie; no raster image is embedded. The existing black square, wordmark and palette are retained. The same icon replaces the TG initials in the hero seal and lower emblem. Prior Open Estia assets remain recoverable in Git history.
 
 ## Boundaries
 

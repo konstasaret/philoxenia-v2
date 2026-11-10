@@ -5,7 +5,7 @@ from sample_content import SAMPLE_HOSTS
 
 DEMO_EMAIL='admin@greekmafia.local'
 DEMO_PASSWORD='GreekMafiaDemo!2026'
-DEFAULT_CONTENT={'hero_intro': 'Θέλουμε να χτίσουμε τη μεγαλύτερη και πιο επιτυχημένη ελληνική «μαφία» στον κόσμο. Μια απολύτως νόμιμη '
+COPY_V1={'hero_intro': 'Θέλουμε να χτίσουμε τη μεγαλύτερη και πιο επιτυχημένη ελληνική «μαφία» στον κόσμο. Μια απολύτως νόμιμη '
                'οικογένεια ανθρώπων που δημιουργούν, ανεβαίνουν και τραβούν ο ένας τον άλλο πιο ψηλά. Από την Ελλάδα, '
                'σε κάθε μέρος όπου συμβαίνουν μεγάλα πράγματα.',
  'manifesto': 'Κι εμείς βρεθήκαμε κάποτε μέσα σε μια τέτοια «μαφία»: μια παρέα που μας έκανε χώρο, μοιράστηκε όσα '
@@ -21,6 +21,12 @@ DEFAULT_CONTENT={'hero_intro': 'Θέλουμε να χτίσουμε τη μεγ
                'γνωριμίες, βοήθεια στην πόλη ή και ένας καναπές. Πες μας τι μπορείς πραγματικά να προσφέρεις. Δεν '
                'χρειάζεται να διαθέτεις σπίτι. Ο ρόλος είναι ανοιχτός σε όλα τα φύλα.',
  'contact_email': ''}
+
+DEFAULT_CONTENT=dict(COPY_V1)
+DEFAULT_CONTENT['hero_intro']=COPY_V1['hero_intro'].replace('οικογένεια ανθρώπων','κοινότητα ανθρώπων')
+DEFAULT_CONTENT['guest_intro']='Associate σημαίνει ότι είσαι έτοιμος/η για το επόμενο βήμα. Άφησε email, τηλέφωνο και ένα σύντομο pitch ενός λεπτού: ποιος/α είσαι, τι σε κινητοποιεί, ποιες είναι οι φιλοδοξίες σου και τι θέλεις να πετύχεις εκεί. Δεν χρειάζονται τέλειες απαντήσεις. Θέλουμε να σε γνωρίσουμε.'
+
+DEFAULT_CONTENT['host_intro']='Godfather σημαίνει ότι προσφέρεις δωρεάν φιλοξενία σε έναν Associate: ένα αερόστρωμα, έναν καναπέ ή ένα δωμάτιο. Μοιράζεσαι γνώση και εμπειρία και, αν μπορείς, βοηθάς με φαγητό, γυμναστήριο και γνωριμίες. Ο ρόλος είναι ανοιχτός σε όλα τα φύλα.'
 
 # Upgrade only untouched previous defaults; preserve operator-authored copy.
 PREVIOUS_CONTENT={'hero_intro': 'Οι Έλληνες είμαστε παντού. Ας είμαστε και ο ένας δίπλα στον άλλο. Το Open Estia θέλει να μας φέρει '
@@ -60,7 +66,16 @@ def seed():
                 if key!='contact_email':
                     execute('UPDATE site_settings SET value=? WHERE key=? AND value=?',(DEFAULT_CONTENT[key],key,previous))
             execute("INSERT INTO site_settings VALUES('greek_mafia_copy_v1','1')")
+        if not one("SELECT 1 FROM site_settings WHERE key='greek_mafia_copy_v2'"):
+            for key,previous in COPY_V1.items():
+                if key!='contact_email':
+                    execute('UPDATE site_settings SET value=? WHERE key=? AND value=?',(DEFAULT_CONTENT[key],key,previous))
+            execute("INSERT INTO site_settings VALUES('greek_mafia_copy_v2','1')")
+        if not one("SELECT 1 FROM site_settings WHERE key='greek_mafia_hosting_v1'"):
+            execute('UPDATE site_settings SET value=? WHERE key=? AND value=?',(DEFAULT_CONTENT['host_intro'],'host_intro',COPY_V1['host_intro']))
+            execute("INSERT INTO site_settings VALUES('greek_mafia_hosting_v1','1')")
         if not one('SELECT 1 FROM operators'):
+
             insert('operators',dict(email=DEMO_EMAIL,name='Greek Mafia operator',password=generate_password_hash(DEMO_PASSWORD,method='pbkdf2:sha256:1000000')))
         if not one("SELECT 1 FROM site_settings WHERE key='directory_seeded'"):
             if not one('SELECT 1 FROM listings'):

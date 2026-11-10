@@ -40,7 +40,7 @@ def photo():
     output=io.BytesIO(); Image.new('RGB',(64,40),'green').save(output,format='PNG'); output.seek(0)
     return output
 
-@pytest.mark.parametrize('path',['/','/explore','/journal','/homes/1','/apply','/become-a-host','/program','/admin/login'])
+@pytest.mark.parametrize('path',['/','/explore','/godfathers','/apply','/become-a-host','/program','/admin/login'])
 def test_public_routes_and_local_assets(visitor,path):
     response=visitor.get(path); assert response.status_code==200
     html=response.get_data(as_text=True)
@@ -50,6 +50,24 @@ def test_public_routes_and_local_assets(visitor,path):
         if source.startswith('/static/'):
             assert visitor.get(source).status_code==200,source
         assert not source.startswith(('https://fonts.','https://images.'))
+
+def test_rebrand_changes_display_without_changing_saved_copy(site,visitor):
+    with site.app_context(): before=dict(settings())
+    html=visitor.get('/').get_data(as_text=True)
+    assert 'The Godfather' in html and 'Greek Mafia' not in html
+    assert 'GODFATHER' in html and 'mafia, redefined.' in html
+    with site.app_context(): assert dict(settings())==before
+
+def test_rebrand_keeps_custom_story_and_does_not_mutate_source_values():
+    from brand import display_content
+    from intake_seed import DEFAULT_CONTENT
+    stored=dict(DEFAULT_CONTENT,manifesto='A personal story from the owner.')
+    before=dict(stored)
+    shown=display_content(stored,DEFAULT_CONTENT)
+    assert shown['manifesto']==stored['manifesto']
+    assert 'The Godfather' in shown['hero_intro']
+    assert 'Greek Mafia' not in shown['origin']
+    assert stored==before
 
 def test_guest_form_no_account_persists_across_restart(site,visitor):
     data=form_data(visitor,listing_id='3',dates='Two weeks in June',city='SF',links='https://example.test/project')
@@ -82,7 +100,7 @@ def test_validation_preserves_input_and_no_partial_record(site,visitor):
     html=response.get_data(as_text=True)
     assert 'Alex Builder' in html and 'working prototype' in html and 'aria-invalid="true"' in html
     with site.app_context(): assert not one('SELECT id FROM inquiries')
-    data.update(email='alex@example.test',phone='',adult='1',consent='1',links='')
+    data.update(email='alex@example.test',phone='+30 691 234 5678',adult='1',consent='1',links='')
     assert submit(visitor,'/apply',data).status_code==302
 
 def test_duplicate_submission_is_idempotent(site,visitor):
@@ -90,6 +108,29 @@ def test_duplicate_submission_is_idempotent(site,visitor):
     assert submit(visitor,'/apply',data).status_code==302
     assert submit(visitor,'/apply',data).status_code==302
     with site.app_context(): assert one('SELECT count(*) n FROM inquiries')['n']==1
+
+@pytest.mark.parametrize('path',['/join','/become-a-godfather'])
+@pytest.mark.parametrize('phone',['','12345'])
+def test_contact_phone_is_required_for_both_roles(site,visitor,path,phone):
+    data=form_data(visitor,path,phone=phone,city='Athens')
+    response=submit(visitor,path,data)
+    assert response.status_code==422
+    html=response.get_data(as_text=True)
+    assert 'error-phone' in html and 'working prototype' in html
+    with site.app_context(): assert not one('SELECT id FROM inquiries')
+
+def test_new_copy_upgrade_preserves_operator_text_and_inquiries(site,visitor):
+    from intake_seed import seed,DEFAULT_CONTENT,COPY_V1
+    assert submit(visitor,'/join',form_data(visitor)).status_code==302
+    with site.app_context():
+        execute("DELETE FROM site_settings WHERE key='greek_mafia_copy_v2'")
+        execute("UPDATE site_settings SET value=? WHERE key='hero_intro'",(COPY_V1['hero_intro'],))
+        execute("UPDATE site_settings SET value=? WHERE key='guest_intro'",('A custom introduction from the owner.',))
+        before=[tuple(r) for r in rows('SELECT * FROM inquiries')]
+        seed();seed()
+        assert settings()['hero_intro']==DEFAULT_CONTENT['hero_intro']
+        assert settings()['guest_intro']=='A custom introduction from the owner.'
+        assert [tuple(r) for r in rows('SELECT * FROM inquiries')]==before
 
 def test_concurrent_duplicate_submission(site,visitor):
     data=form_data(visitor)
@@ -145,8 +186,10 @@ def test_edit_publish_pause_listing_and_no_private_leak(site,visitor):
     assert visitor.get('/homes/'+str(listing_id)).status_code==404
     payload['status']='published';payload['benefit_Meals']='conditional';payload['note_Meals']='Only when an event offers free food.'
     assert submit(admin,'/admin/listings/'+str(listing_id),payload).status_code==302
-    html=visitor.get('/homes/'+str(listing_id)).get_data(as_text=True)
-    assert 'Test Host' in html and 'Only when an event' in html and 'PRIVATE EXACT ADDRESS' not in html and 'PRIVATE OPERATOR NOTE' not in html
+    retired=visitor.get('/homes/'+str(listing_id))
+    assert retired.status_code==302 and retired.location.endswith('#godfather-'+str(listing_id))
+    html=visitor.get('/godfathers').get_data(as_text=True)
+    assert 'Test Host' in html and 'Φαγητό · κατόπιν συνεννόησης' in html and 'PRIVATE EXACT ADDRESS' not in html and 'PRIVATE OPERATOR NOTE' not in html
     data=form_data(visitor,listing_id=str(listing_id))
     payload['status']='paused';submit(admin,'/admin/listings/'+str(listing_id),payload)
     assert submit(visitor,'/apply',data).status_code==422
@@ -156,14 +199,18 @@ def test_story_and_site_content_edit(site,visitor):
     admin=operator(site)
     story=dict(title='A verified new story',summary='Σύντομη σύνοψη.',city='Nairobi, Kenya',category='Builder story',published_on='2026-10-20',source_name='Original publisher',source_url='https://example.test/story',status='published',position='-1')
     assert submit(admin,'/admin/stories/new',story).status_code==302
-    assert 'A verified new story' in visitor.get('/journal').get_data(as_text=True)
+    assert 'A verified new story' in admin.get('/admin/stories').get_data(as_text=True)
+    retired=visitor.get('/journal')
+    assert retired.status_code==302 and retired.location=='/'
+    public=visitor.get('/journal',follow_redirects=True).get_data(as_text=True)
+    assert 'A verified new story' not in public and 'href="/journal"' not in public
     with site.app_context(): values=settings(); story_id=one("SELECT id FROM stories WHERE title='A verified new story'")['id']
     values.update(hero_intro='Η δική μας καινούργια εισαγωγή.',contact_email='hello@example.test')
     assert submit(admin,'/admin/content',values).status_code==302
     assert values['hero_intro'] in visitor.get('/').get_data(as_text=True)
     assert 'mailto:hello@example.test' in visitor.get('/program').get_data(as_text=True)
     story['status']='paused';submit(admin,'/admin/stories/'+str(story_id),story)
-    assert 'A verified new story' not in visitor.get('/journal').get_data(as_text=True)
+    with site.app_context(): assert one('SELECT status FROM stories WHERE id=?',(story_id,))['status']=='paused'
 
 def test_photo_validation_visibility_and_content(site,visitor):
     admin=operator(site);payload=listing_payload();payload.update(image_alt='A host photo',image_credit='Photo by owner',photo=(photo(),'host.png'))
@@ -308,7 +355,7 @@ def test_valid_long_benefits_remain_editable(site):
 def test_greek_mafia_two_roles_save_privately_under_correct_labels(site,visitor):
     for path,role in [('/join','Associate'),('/become-a-godfather','Godfather')]:
         html=visitor.get(path).get_data(as_text=True)
-        assert 'Greek Mafia' in html and role in html and 'Open Estia' not in html
+        assert 'The Godfather' in html and 'Greek Mafia' not in html and role in html and 'Open Estia' not in html
         data=form_data(visitor,path,city='Athens',message='I can share practical engineering experience and learn with the family.')
         assert submit(visitor,path,data).location=='/thanks'
         assert role in visitor.get('/thanks').get_data(as_text=True)
@@ -321,20 +368,41 @@ def test_greek_mafia_two_roles_save_privately_under_correct_labels(site,visitor)
         assert 'alex@example.test' not in visitor.get(path).get_data(as_text=True)
 
 
-def test_godfather_can_offer_support_without_accommodation(site,visitor):
+def test_godfather_requires_hosting_before_publication(site,visitor):
     admin=operator(site)
     payload=listing_payload()
-    payload.update(name='Mentor without a spare room',sleeping='',availability='One conversation a month, by agreement.',status='published',benefit_Mentorship='conditional',note_Mentorship='Engineering feedback by agreement.')
+    payload.update(name='Host with an air mattress',sleeping='',availability='One week, by arrangement.',status='published',benefit_Mentorship='conditional',note_Mentorship='Engineering feedback by agreement.')
+    response=submit(admin,'/admin/listings/new',payload)
+    assert response.status_code==422 and 'error-sleeping' in response.get_data(as_text=True)
+    with site.app_context(): assert not one("SELECT * FROM listings WHERE name='Host with an air mattress'")
+    payload['status']='draft'
     assert submit(admin,'/admin/listings/new',payload).status_code==302
-    with site.app_context(): item=one("SELECT * FROM listings WHERE name='Mentor without a spare room'")
+    with site.app_context(): item=one("SELECT * FROM listings WHERE name='Host with an air mattress'")
     assert item['sleeping']==''
-    html=visitor.get('/godfathers/'+str(item['id'])).get_data(as_text=True)
-    assert 'Engineering feedback by agreement.' in html
-    assert 'Δεν προσφέρεται διαμονή σε αυτό το προφίλ.' in html
+    assert visitor.get('/godfathers/'+str(item['id'])).status_code==404
+    payload.update(status='published',sleeping='An air mattress in a shared living room.')
+    assert submit(admin,'/admin/listings/'+str(item['id']),payload).status_code==302
+    retired=visitor.get('/godfathers/'+str(item['id']))
+    assert retired.status_code==302 and retired.location.endswith('#godfather-'+str(item['id']))
+    html=visitor.get('/godfathers').get_data(as_text=True)
+    assert payload['sleeping'] in html and 'Feedback · κατόπιν συνεννόησης' in html
     assert 'PRIVATE EXACT ADDRESS' not in html
     data=form_data(visitor,'/join',listing_id=str(item['id']))
     assert submit(visitor,'/join',data).location=='/thanks'
     with site.app_context(): assert one('SELECT listing_id FROM inquiries')['listing_id']==item['id']
+
+
+@pytest.mark.parametrize('custom',[False,True])
+def test_hosting_copy_upgrade_preserves_custom_text_and_records(site,custom):
+    from intake_seed import seed,DEFAULT_CONTENT,COPY_V1
+    with site.app_context():
+        previous='The owner wrote this personal welcome.' if custom else COPY_V1['host_intro']
+        execute("DELETE FROM site_settings WHERE key='greek_mafia_hosting_v1'")
+        execute("UPDATE site_settings SET value=? WHERE key='host_intro'",(previous,))
+        before=[tuple(r) for r in rows('SELECT * FROM listings ORDER BY id')]
+        seed();seed()
+        assert settings()['host_intro']==(previous if custom else DEFAULT_CONTENT['host_intro'])
+        assert [tuple(r) for r in rows('SELECT * FROM listings ORDER BY id')]==before
 
 
 def test_brand_upgrade_changes_defaults_but_keeps_custom_copy_and_records(site):
@@ -348,3 +416,45 @@ def test_brand_upgrade_changes_defaults_but_keeps_custom_copy_and_records(site):
         assert settings()['hero_intro']==DEFAULT_CONTENT['hero_intro']
         assert settings()['manifesto']=='Our operator wrote a personal story.'
         assert [tuple(r) for r in rows('SELECT * FROM listings ORDER BY id')]==before
+
+
+def test_directory_filters_links_and_no_personal_pages(site,visitor):
+    admin=operator(site); payload=listing_payload()
+    payload.update(name='Directory Host',status='published',linkedin_url='https://www.linkedin.com/in/directory-host/')
+    assert submit(admin,'/admin/listings/new',payload).status_code==302
+    with site.app_context(): item=one("SELECT * FROM listings WHERE name='Directory Host'")
+    html=visitor.get('/godfathers?city=Athens&q=Directory').get_data(as_text=True)
+    assert 'Directory Host' in html and 'Chris &amp; Theo' not in html
+    assert payload['linkedin_url'] not in html and 'One couch for one adult.' in html
+    assert 'name="q"' not in html and 'LinkedIn ↗' not in html
+    assert 'PRIVATE EXACT ADDRESS' not in html and 'PRIVATE OPERATOR NOTE' not in html
+    assert 'href="/godfathers/'+str(item['id'])+'"' not in html
+    assert 'Directory Host' not in visitor.get('/godfathers?city=London').get_data(as_text=True)
+    assert 'Directory Host' in visitor.get('/godfathers?q=absent').get_data(as_text=True)
+    for path in ['/godfathers/','/homes/']:
+        response=visitor.get(path+str(item['id']))
+        assert response.status_code==302 and response.location.endswith('#godfather-'+str(item['id']))
+    payload['linkedin_url']='javascript:alert(1)'
+    assert submit(admin,'/admin/listings/'+str(item['id']),payload).status_code==422
+
+
+def test_homepage_copy_cleanup_and_section_order(visitor):
+    html=visitor.get('/').get_data(as_text=True)
+    assert 'παγκόσμιο δίκτυο builders' in html
+    assert 'Ελλήνων και' not in html
+    assert 'μας ανθρώπους: έναν Godfather και μια παρέα που' in html
+    assert 'Δεν ήταν μόνο μια συμβουλή' not in html
+    assert 'ILLUSTRATIVE CITIES.' not in html
+    assert 'GIVE SUPPORT. GET SUPPORT.' in html
+    assert 'id="godfathers"' not in html and 'Meet your' not in html
+    assert '04 / THE CODE' in html and '05 / THE CODE' not in html
+    sections=re.findall(r'<section[^>]+id="([^"]+)"',html)
+    assert sections==['the-family','our-story','worldwide','the-code','join']
+    assert 'class="join-process"' not in html
+    assert 'Μία φόρμα. Μετά, μιλάμε.' not in html
+    assert 'matching ή κράτηση' not in html
+    # Keep the directory, both forms and the privacy page reachable.
+    for path in ['/godfathers','/join','/become-a-godfather','/program']:
+        assert 'href="'+path+'"' in html
+        assert visitor.get(path).status_code==200
+    assert 'Δεν χρωστάς εργασία, χρήματα ή ποσοστό σε κανέναν.' in html

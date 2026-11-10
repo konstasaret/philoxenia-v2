@@ -51,4 +51,4 @@ No production host, separate admin domain, email provider, WhatsApp API, job sch
 
 ## Greek Mafia compatibility
 
-The stored `guest`/`host` roles render as Associate/Godfather. Canonical public routes are `/join`, `/become-a-godfather`, `/godfathers` and `/godfathers/<id>`; the previous routes remain usable aliases. A Godfather profile may omit accommodation. Empty sleeping text renders an explicit no-accommodation message. No data-table rewrite is needed for the rebrand. Existing operator credentials and historical records remain unchanged.
+The stored `guest`/`host` roles render as Associate/Godfather. Canonical public routes are `/join`, `/become-a-godfather`, `/godfathers` and `/godfathers/<id>`; the previous routes remain usable aliases. Every Godfather offers hosting on an air mattress, couch or in a room. Publishing requires a sleeping arrangement; incomplete drafts remain private. Food, gym access and introductions depend on the Godfather’s additional offerings. No data-table rewrite is needed for the rebrand. Existing operator credentials and historical records remain unchanged.

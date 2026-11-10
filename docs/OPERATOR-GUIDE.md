@@ -12,13 +12,13 @@
 
 Associates use `/join`; Godfathers use `/become-a-godfather`. Neither creates an account. A Godfather profile's application link preselects that host. Dates are free text, so you can arrange them without a booking calendar. People can leave the host choice open.
 
-Both forms collect name, email, an optional WhatsApp number with country code, a message, optional links, and 18+/contact consent. The Godfather form also asks for the city. The Associate form offers optional city and date preferences. Submitted information is private.
+Both forms collect name, email, a required phone number with country code, a one-minute written pitch, optional links, and 18+/contact consent. The Godfather form also asks for the city. The Associate form offers optional city and date preferences. Submitted information is private.
 
 The confirmation page acknowledges saving; it does not claim an email was sent. Repeating the same submission does not create a duplicate. Validation errors keep entered text.
 
 ## Edit what is on the site
 
-**Godfathers** combines the person, their support and optional accommodation in one editor. Leave the sleeping-arrangement field blank when no accommodation is offered. Add the name, English specialty, city, Greek introduction, sleeping arrangement, availability, house details and benefits. All offered support and accommodation are free. A Godfather can offer mentoring without hosting. Mark meals, gym access, workspace, support and introductions as included, conditional or unavailable; explain any conditions.
+**Godfathers** combines the person, hosting arrangement and additional support in one editor. Hosting on an air mattress, couch or in a room is part of every Godfather’s role; describe the sleeping arrangement before publishing. Incomplete drafts can be saved. Add the name, English specialty, city, Greek introduction, sleeping arrangement, availability, house details and benefits. All offered support and accommodation are free. Every published Godfather profile must describe where the Associate will stay. Mark meals, gym access, workspace, support and introductions as included, conditional or unavailable; explain any conditions.
 
 The exact address, Godfather email, phone and notes are operator-only. Uncheck the fictional-sample label only for a real profile. Save as **Published** to show it, **Paused** to hide it, or **Draft** while preparing it. Lower display-order numbers appear first. A submitted Godfather form never publishes itself.
 

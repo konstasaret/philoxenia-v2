@@ -1,4 +1,4 @@
-/* GREEK MAFIA — warm people, sharp ambition, a completely legal family. */
+/* THE GODFATHER — good people, sharp ambition, global reach. */
 :root{--paper:#f2efe4;--ink:#171b17;--pine:#171b17;--muted:#5b6055;--line:#cbd0bc;--white:#fcfaf2;--orange:#a53c26;--amber:#d4e879;--wash:#e6e9d7;--acid:#d4e879;--coral:#f58063}
 html{scroll-padding-top:26px}body{font-family:Arial,Helvetica,sans-serif}::selection{background:var(--acid);color:var(--ink)}
 [hidden]{display:none!important}.wrap{max-width:1320px;padding-inline:56px}.wrap.narrow{max-width:850px}
@@ -39,7 +39,7 @@ html{scroll-padding-top:26px}body{font-family:Arial,Helvetica,sans-serif}::selec
 .hero-bottom .button{background:var(--acid);border-color:var(--ink);color:var(--ink);min-width:260px;justify-content:space-between}
 .hero-bottom .text-link{font-size:11px;margin-top:6px}.hero-fineprint{font-size:10px;color:var(--muted);margin-top:4px}
 .family-ticker{overflow:hidden;background:var(--ink);color:var(--acid);padding-block:18px;border-block:1px solid var(--ink)}
-.ticker-track{display:flex;width:max-content}.ticker-track>span{white-space:nowrap;flex-shrink:0;font-size:21px;line-height:1.2;letter-spacing:-.025em;font-weight:700}.ticker-track i{font-style:normal;font-size:24px;margin-inline:26px;color:var(--coral)}
+.ticker-track{display:flex;width:max-content;will-change:transform}.ticker-group{display:flex;align-items:center;justify-content:space-around;flex:0 0 auto;min-width:100vw}.ticker-phrase{white-space:nowrap;flex-shrink:0;font-size:21px;line-height:1.2;letter-spacing:-.025em;font-weight:700}.ticker-track i{font-style:normal;font-size:24px;margin-inline:26px;color:var(--coral)}
 .family-definition{display:grid;grid-template-columns:1fr 2.7fr;gap:70px}.chapter-index{font-size:10px;letter-spacing:.1em;display:flex;flex-direction:column;gap:35px;padding-top:6px}.annotation{font-family:Georgia,serif;font-style:italic;font-size:22px;letter-spacing:-.03em;transform:rotate(-7deg);color:var(--orange)}
 .definition-main h2{margin-bottom:34px}.definition-copy{max-width:670px;font-size:16px}.definition-copy p{margin-bottom:20px}.legal-line{display:flex;gap:14px;font-size:14px;padding-top:10px}.legal-line>span{font-size:25px;color:var(--orange);line-height:1.1}
 .origin-section{background:#e5e8d4}.origin-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:110px;padding-block:90px;align-items:center}.origin-photo{max-width:300px;position:relative}.origin-photo figure{margin:0;transform:rotate(-4deg)}
@@ -74,7 +74,8 @@ html{scroll-padding-top:26px}body{font-family:Arial,Helvetica,sans-serif}::selec
 .public-site .program-copy h2{font-size:37px;margin-block:40px 20px}.public-site .program-copy p{font-size:15px}.public-site .story-card h3{font-family:Georgia,serif;font-size:31px}.public-site .story-card .eyebrow,.public-site .story-meta,.public-site .photo-credit{font-size:11px}.public-site .story-card>p:not(.eyebrow):not(.photo-credit){font-size:14px}
 .public-site .confirmation .sun{color:var(--orange)}.public-site .confirmation h1{font-size:clamp(50px,6vw,78px)}
 /* Only enhance after the script has installed its fallback paths. */
-.motion-ready:not(.motion-paused) .ticker-track{animation:family-ticker 28s linear infinite}
+.motion-ready .ticker-track{animation:family-ticker 112s linear infinite}
+.motion-ready.motion-paused .ticker-track{animation-play-state:paused}
 .motion-ready:not(.motion-paused) .seal-ring{animation:family-seal 24s linear infinite}
 .motion-ready:not(.motion-paused) .network-route{animation:family-route 12s linear infinite}
 .motion-ready:not(.motion-paused) .hero-identity{animation:family-arrival .7s ease-out both}
@@ -107,7 +108,7 @@ html{scroll-padding-top:26px}body{font-family:Arial,Helvetica,sans-serif}::selec
 .wrap{padding-inline:22px}.masthead{gap:15px;padding-block:19px}.brand-mafia img{width:33px;height:33px}.brand-mafia>span{font-size:18px}.masthead-tools{display:contents}.masthead nav{order:3;width:100%;justify-content:space-between;gap:10px;font-size:11px}.masthead>.motion-toggle,.masthead-tools>.motion-toggle{margin-left:auto;font-size:10px;min-height:36px}.masthead nav .button.small{padding:10px 13px;font-size:11px;gap:12px}
 .hero-topline{font-size:7px;letter-spacing:.06em;margin-bottom:30px}.mafia-hero{padding-block:20px 35px}.mafia-hero-grid{grid-template-columns:1fr;gap:28px}.mafia-hero h1{font-size:clamp(100px,25vw,151px)}.hero-motto{font-size:26px;margin-top:23px}.hero-right{width:250px;min-height:255px;margin:0 auto;padding:24px 6px 0 36px}.family-photo{width:200px}.family-photo img{height:182px}.legal-seal{width:112px;height:112px;left:0;top:0}
 .hero-bottom{margin-top:24px;gap:23px}.hero-bottom>p{font-size:15px}.hero-bottom>div{display:flex;align-items:flex-start;gap:0}.hero-bottom .button{min-width:0;width:100%;justify-content:space-between}.hero-bottom .text-link{font-size:11px;margin-top:6px}.hero-fineprint{margin-top:7px;font-size:10px}
-.family-ticker{padding-block:15px}.ticker-track>span{font-size:17px}.ticker-track i{font-size:19px;margin-inline:18px}.mafia-home .chapter{padding-block:55px}.mafia-home h2{font-size:clamp(36px,9vw,47px)}
+.family-ticker{padding-block:15px}.ticker-phrase{font-size:17px}.ticker-track i{font-size:19px;margin-inline:18px}.mafia-home .chapter{padding-block:55px}.mafia-home h2{font-size:clamp(36px,9vw,47px)}
 .chapter-index{font-size:8px}.annotation{font-size:18px}.definition-main h2{margin-bottom:26px}.definition-copy{font-size:14px}.legal-line{font-size:13px;gap:12px}
 .origin-layout{grid-template-columns:1fr;gap:45px;padding-block:55px}.origin-photo{max-width:205px;width:100%;margin:12px auto 0}.origin-photo img{aspect-ratio:4/4.4}.photo-scribble{font-size:19px;right:-25px}.origin-copy>p:not(.eyebrow){font-size:14px}.origin-copy h2{font-size:44px}.spark-credit p:not(.eyebrow){font-size:14px}
 .global-heading>p:not(.eyebrow){font-size:14px}.network-board{min-height:0;display:grid;grid-template-columns:1fr 1fr;padding:24px;gap:28px 22px;margin-top:30px}.network-caption{grid-column:1/-1;padding:0 0 18px;border-bottom:1px solid #566048;font-size:8px;line-height:1.6;display:block}.network-caption>span{display:block}.network-caption>span+span{margin-top:5px}.network-lines{display:none}.hub{position:relative!important;left:auto!important;top:auto!important;min-width:0;padding-left:19px}.hub-code{font-size:27px}.hub strong{font-size:11px}.hub-dot{top:8px}.network-footer p{font-size:11px}
@@ -121,3 +122,124 @@ html{scroll-padding-top:26px}body{font-family:Arial,Helvetica,sans-serif}::selec
 html{scroll-behavior:auto}.public-site *, .public-site *::before,.public-site *::after{animation:none!important;transition:none!important}.reveal-ready .reveal{opacity:1;transform:none}.role-card:hover,.public-site .button:hover{transform:none}
 }
 @media print{.reveal-ready .reveal{opacity:1;transform:none}.motion-toggle{display:none}.public-site *{animation:none!important}.network-lines{display:none}}
+
+/* Earth and city directory share the existing pause / reduced-motion control. */
+.globe-board{background-color:#171f1b;min-height:0;padding:0;display:block}
+.globe-board .network-caption{padding:24px 30px;border-bottom:1px solid #d4e87925}
+.globe-layout{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:28px;padding:15px 45px 35px 15px}
+.globe-stage{position:relative;min-width:0;aspect-ratio:1}
+.globe-stage::before{content:"";position:absolute;inset:12%;border:1px solid #8b9d6750;border-radius:50%;background:radial-gradient(ellipse at 35% 30%,#3c4b38,#101c18);box-shadow:0 0 45px #d4e8790d}
+.earth-canvas{display:block;position:relative;width:100%;height:100%;aspect-ratio:1}
+.globe-coordinate{position:absolute;bottom:0;left:0;right:0;text-align:center;font-size:8px;letter-spacing:.15em;color:#9eae91}
+.globe-directory{padding:24px 0;min-width:0}.globe-directory>.eyebrow{font-size:8px;color:#a7b399;letter-spacing:.11em;margin-bottom:40px}
+.public-site .spotlight-title{font-size:clamp(40px,6.4vw,82px);font-weight:700;line-height:1;letter-spacing:-.07em;margin:0 0 18px;color:var(--paper)}
+.godfather-rotating{min-height:170px;contain:layout}.public-site .spotlight-specialty{font-family:Georgia,serif;font-style:italic;font-size:clamp(48px,7.2vw,94px);letter-spacing:-.065em;line-height:1.05;color:var(--acid);margin:0 0 20px;overflow-wrap:normal}
+.public-site .spotlight-location{display:flex;gap:14px;align-items:center;font-size:clamp(18px,2.3vw,29px);line-height:1.3;letter-spacing:-.035em;margin:0;color:var(--paper)}.spotlight-pin{color:var(--coral);font-size:25px}
+.spotlight-progress{display:flex;align-items:center;gap:16px;margin-top:32px;padding-top:22px;border-top:1px solid #d4e87930;font-size:9px;letter-spacing:.07em;color:#a7b399}.spotlight-progress>span:first-child{color:var(--coral);min-width:52px}.spotlight-progress>span:last-child{white-space:nowrap}
+.spotlight-track{flex:1;height:2px;background:#d4e87925;overflow:hidden}.spotlight-track>span{display:block;width:100%;height:100%;background:var(--acid);transform:scaleX(0);transform-origin:left}
+.globe-note{font-size:11px;line-height:1.8!important;color:#abb79d;margin:28px 0 0}.family-photo img{object-position:50% 61%}
+@media(max-width:1100px){.globe-layout{gap:22px;padding-right:32px}.godfather-rotating{min-height:156px}}
+@media(max-width:800px){.globe-layout{grid-template-columns:1fr 1fr;gap:12px;padding:15px 26px 30px 0}.globe-directory>.eyebrow{font-size:7px;margin-bottom:28px}.public-site .spotlight-title{font-size:clamp(35px,6vw,48px)}.public-site .spotlight-specialty{font-size:clamp(40px,7vw,56px)}.public-site .spotlight-location{font-size:20px;gap:9px}.godfather-rotating{min-height:128px}.globe-coordinate{font-size:7px;bottom:12px}.globe-note{font-size:10px}.spotlight-progress{gap:10px;font-size:8px}}
+@media(max-width:600px){.globe-board{display:block;padding:0}.globe-board .network-caption{padding:20px 22px;margin:0;display:flex;font-size:7px;gap:18px}.globe-board .network-caption>span+span{margin-top:0}.globe-layout{grid-template-columns:1fr;padding:0 24px 32px;gap:8px}.globe-stage{max-width:380px;width:100%;margin:auto}.globe-coordinate{bottom:3px;font-size:7px}.globe-directory{padding:12px 0 0}.globe-directory>.eyebrow{font-size:8px;margin-bottom:24px}.public-site .spotlight-title{font-size:clamp(42px,13vw,68px);margin-bottom:14px}.public-site .spotlight-specialty{font-size:clamp(46px,14vw,76px);margin-bottom:17px}.public-site .spotlight-location{font-size:24px}.godfather-rotating{min-height:132px}.spotlight-progress{margin-top:24px}.globe-note{font-size:11px;margin-top:24px}}
+@media(prefers-reduced-motion:reduce){.godfather-rotating{animation:none!important;transition:none!important}}
+
+/* Keep the seal over the night sky rather than the group’s faces. */
+.hero-right .legal-seal{top:-30px}
+@media(max-width:600px){.hero-right{margin-top:18px}}
+
+/* Show the complete landscape group photo without cropping anyone out. */
+.origin-layout .origin-photo{max-width:100%;width:100%}
+.origin-photo img{aspect-ratio:4/3;height:auto;object-fit:contain}
+
+.origin-layout .photo-scribble{right:8px}
+
+/* The role stays fixed; the phrase reads “Godfather in [specialty]”. */
+.spotlight-in{font-size:.52em;letter-spacing:-.035em;color:var(--paper)}
+
+.network-footer{justify-content:flex-end}
+
+/* A middle ground between the original identity and the compact left-aligned hero. */
+.mafia-hero{padding-block:26px 52px}
+.mafia-hero .hero-topline{margin-bottom:36px}
+.mafia-hero .mafia-hero-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:56px;align-items:center}
+.mafia-hero .hero-identity{min-width:0;max-width:none;text-align:left}
+.mafia-hero h1.godfather-brand-title{font-size:clamp(58px,7.3vw,100px);line-height:.96;letter-spacing:-.065em;margin:0}
+.mafia-hero .godfather-brand-title>span:first-child{font:inherit;font-size:.7em;font-weight:900;line-height:1;letter-spacing:-.045em;margin:0 0 7px}
+.mafia-hero .godfather-brand-title .brand-long-name{font-size:inherit;line-height:inherit;letter-spacing:inherit;margin:0;white-space:nowrap}
+.mafia-hero .hero-motto{font-size:26px;line-height:1.35!important;margin:19px 0 22px}
+.mafia-hero .hero-intro{max-width:550px;font-size:15px;line-height:1.85;margin:0;color:var(--ink)}
+.mafia-hero .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;margin-top:24px}
+.mafia-hero .hero-actions .button{background:var(--acid);border-color:var(--ink);color:var(--ink);min-width:235px;justify-content:space-between}
+.mafia-hero .hero-actions .text-link{font-size:12px;line-height:1.5;min-height:36px}
+.mafia-hero .hero-fineprint{flex-basis:100%;font-size:10px;margin:0}
+.mafia-hero .hero-right{box-sizing:border-box;position:relative;width:340px;min-height:0;max-width:100%;padding:28px 8px 8px 24px;margin:0;align-self:center;justify-self:end}
+.mafia-hero .family-photo{box-sizing:border-box;width:100%;max-width:none;margin:0;transform:rotate(2deg);padding:10px 10px 14px}
+.mafia-hero .family-photo img{width:100%;height:auto;aspect-ratio:1.04;object-fit:cover;object-position:50% 61%}
+.mafia-hero .family-photo figcaption{font-size:9px;line-height:1.7;margin-top:12px}
+.mafia-hero .legal-seal{width:104px;height:104px;top:0;left:-7px;right:auto;box-shadow:0 0 0 5px var(--paper)}
+.mafia-hero .legal-seal>span{inset:28px 0 auto;font-size:26px}.mafia-hero .legal-seal i{font-size:27px}
+@media(max-width:1100px){.mafia-hero .mafia-hero-grid{gap:34px}.mafia-hero .hero-motto{font-size:24px}.mafia-hero .hero-right{width:310px;padding-left:20px}.mafia-hero .hero-actions{column-gap:16px}}
+@media(max-width:800px){.mafia-hero .mafia-hero-grid{grid-template-columns:1fr;gap:30px}.mafia-hero .hero-identity{max-width:650px}.mafia-hero h1.godfather-brand-title{font-size:clamp(58px,10vw,78px)}.mafia-hero .hero-topline{margin-bottom:30px}.mafia-hero .hero-intro{max-width:600px}.mafia-hero .hero-right{width:285px;justify-self:center}.mafia-hero .legal-seal{width:94px;height:94px;left:-3px}.mafia-hero .legal-seal>span{inset:25px 0 auto;font-size:23px}.mafia-hero .legal-seal i{font-size:25px}}
+@media(max-width:600px){.mafia-hero{padding-block:24px 38px}.mafia-hero .hero-topline{margin-bottom:27px}.mafia-hero h1.godfather-brand-title{font-size:clamp(36px,10.7vw,62px)}.mafia-hero .godfather-brand-title>span:first-child{font-size:.72em;margin-bottom:7px}.mafia-hero .hero-motto{font-size:23px;margin:17px 0 20px}.mafia-hero .hero-intro{font-size:14px;line-height:1.85}.mafia-hero .hero-actions{gap:7px;margin-top:21px}.mafia-hero .hero-actions .button{width:100%;min-width:0}.mafia-hero .hero-actions .text-link{width:100%;font-size:11px;min-height:36px}.mafia-hero .hero-fineprint{font-size:9px}.mafia-hero .mafia-hero-grid{gap:27px}.mafia-hero .hero-right{width:265px}.mafia-hero .legal-seal{width:88px;height:88px;left:0}.mafia-hero .legal-seal>span{inset:23px 0 auto;font-size:22px}.mafia-hero .legal-seal i{font-size:24px}}
+
+/* Three real moments, kept together as a small photo wall. */
+.origin-layout{grid-template-columns:minmax(0,1.08fr) minmax(0,1.2fr);gap:76px}
+.origin-layout .story-collage{align-self:center;min-width:0;padding:20px 8px 0;box-sizing:border-box}
+.story-collage .story-album{margin:0;transform:none}
+.story-collage-photos{padding:0 5px}
+.story-frame{box-sizing:border-box;background:var(--white);padding:8px 8px 20px;border:1px solid rgba(23,27,23,.14);box-shadow:0 9px 20px rgba(23,27,23,.13)}
+.story-collage .story-frame img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
+.story-frame-main{width:91%;margin:0 auto;transform:rotate(-3deg)}
+.story-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;margin-top:22px}
+.story-frame-dinner{transform:rotate(-6deg)}
+.story-frame-together{transform:rotate(5deg);margin-top:20px}
+.story-collage .story-album figcaption{transform:none;margin:30px 0 0 8px;font-size:10px;line-height:1.7}
+.origin-layout .story-collage .photo-scribble{top:-8px;right:-3px;z-index:1;font-size:22px;transform:rotate(6deg)}
+@media(max-width:1100px){.origin-layout{gap:42px}.origin-layout .story-collage .photo-scribble{font-size:19px}}
+@media(max-width:800px){.origin-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:30px}.story-frame{padding:6px 6px 14px}.story-pair{gap:10px;margin-top:18px}.origin-layout .story-collage .photo-scribble{font-size:16px}}
+@media(max-width:600px){.origin-layout{grid-template-columns:minmax(0,1fr);gap:42px}.origin-layout .story-collage{max-width:420px;margin:12px auto 0;padding-inline:8px}.story-pair{gap:14px;margin-top:22px}.origin-layout .story-collage .photo-scribble{font-size:19px;right:2px}.story-collage .story-album figcaption{margin-top:28px;font-size:9px}}
+
+/* A compact directory: every name and offer lives on this page. */
+.directory-filter{display:flex;align-items:end;gap:16px;flex-wrap:wrap;padding:22px;background:var(--wash);border:1px solid var(--line);margin-bottom:10px}
+.directory-filter-field{display:flex;flex-direction:column;gap:7px;flex:1;min-width:170px}
+.directory-filter-field label{font-size:11px;font-weight:700}
+.directory-filter .directory-filter-field input,.directory-filter .directory-filter-field select{box-sizing:border-box;width:100%;max-width:none;min-width:0;min-height:44px;background:var(--paper);color:var(--ink);border:1px solid var(--line);padding:10px 12px;border-radius:0;font:inherit}
+.directory-filter>.button{min-height:44px}.directory-filter>.text-link{min-height:44px}
+.public-site .directory-row{grid-template-columns:30px minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:start;padding-block:30px;scroll-margin-top:28px}
+.directory-row .host-person{min-width:0}.directory-row .host-person h3{font-family:Arial,Helvetica,sans-serif;font-weight:750;font-size:28px;letter-spacing:-.04em;margin-bottom:10px}
+.directory-row .host-person .eyebrow{margin-bottom:10px}.directory-row .host-description{grid-column:auto;grid-row:auto;min-width:0}.directory-row .host-description>p{font-size:14px;margin-bottom:12px}
+.directory-linkedin{display:inline-block;font-size:11px;min-height:30px;margin-top:6px}.directory-row .sample-tag{display:block;width:fit-content}
+.directory-offers{display:flex;flex-wrap:wrap;gap:7px;list-style:none;padding:0;margin:0}.directory-offers li{font-size:10px;line-height:1.5;border:1px solid var(--line);padding:5px 8px;border-radius:3px;color:var(--muted)}
+.directory-join{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:35px}.directory-join p{margin:0;font-size:14px}
+@media(max-width:600px){.directory-filter{padding:16px;gap:12px}.directory-filter-field{flex-basis:100%;min-width:0}.directory-filter>.button{flex:1}.public-site .directory-row{grid-template-columns:22px minmax(0,1fr);gap:10px 14px}.directory-row .host-person h3{font-size:26px}.directory-row .host-description{grid-column:2;grid-row:2}.directory-row .host-description>p{font-size:13px}.directory-join{gap:14px}.directory-join .button{width:100%}}
+
+/* Reuse the brand mark in place of the former TG initials. */
+.godfather-icon{display:block;width:100%;height:auto;fill:currentColor;flex:none}
+.mafia-hero .legal-seal>.seal-icon{inset:23%;display:grid;place-items:center;line-height:1}
+.family-emblem .godfather-icon{width:124px;height:124px}
+
+/* Philoxenia credit with both owner-supplied photographs and responsive annotations. */
+.origin-layout>.spark-story{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);align-items:center;gap:54px;margin-top:0;padding-top:44px}
+.spark-credit-copy{min-width:0}.spark-credit-copy>p:not(.eyebrow){max-width:540px}
+.spark-photo-story{min-width:0;padding:9px 8px 0}.spark-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+.spark-portrait{margin:0;padding:7px 7px 15px;background:var(--white);border:1px solid rgba(23,27,23,.15);box-shadow:0 7px 17px rgba(23,27,23,.14)}
+.spark-portrait-1{transform:rotate(-2deg)}.spark-portrait-2{transform:rotate(2deg);margin-top:24px}
+.spark-photo-surface{position:relative}.spark-photo-surface>img{display:block;width:100%;height:auto;aspect-ratio:962/1280;object-fit:contain}
+.spark-photo-annotations{position:absolute;inset:0;display:block;width:100%;height:100%;fill:none;pointer-events:none}
+.spark-photo-annotations ellipse,.spark-photo-annotations path{stroke-width:2;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.spark-circle-godfather{stroke:var(--acid)}.spark-circle-philoxenia{stroke:var(--paper)}
+.spark-photo-label{position:absolute;display:flex;align-items:center;gap:5px;line-height:1.15;pointer-events:none}
+.spark-label-godfather{left:4%;top:5%;padding:6px;color:var(--acid);background:var(--ink);font-size:7px;font-weight:800;letter-spacing:.025em;transform:rotate(-3deg)}
+.spark-label-godfather .godfather-icon{width:23px;height:23px}.spark-label-godfather small{display:block;color:inherit;font-size:6px;letter-spacing:.18em;margin-top:3px}
+.spark-label-philoxenia{right:4%;top:17%;background:var(--paper);color:var(--ink);font:italic 15px/1.1 Georgia,serif;padding:6px 8px;transform:rotate(3deg)}
+.spark-credit .spark-photo-key{display:flex;flex-wrap:wrap;gap:3px 14px;font-size:9px;line-height:1.7;margin:27px 0 0;color:var(--muted)}
+@media(max-width:1100px){.origin-layout>.spark-story{gap:34px}.spark-photos{gap:13px}.spark-label-godfather{font-size:6px;padding:5px;gap:3px}.spark-label-godfather .godfather-icon{width:20px;height:20px}.spark-label-philoxenia{font-size:13px}}
+@media(max-width:800px){.origin-layout>.spark-story{grid-template-columns:minmax(0,1fr);gap:28px}.spark-photo-story{max-width:570px;width:100%;justify-self:center}.spark-label-godfather{font-size:8px;padding:7px;gap:5px}.spark-label-godfather .godfather-icon{width:25px;height:25px}.spark-label-philoxenia{font-size:17px}}
+@media(max-width:600px){.origin-layout>.spark-story{padding-top:30px;gap:22px}.spark-photo-story{padding-inline:4px}.spark-photos{gap:12px}.spark-portrait{padding:5px 5px 11px}.spark-portrait-2{margin-top:20px}.spark-label-godfather{font-size:5px;padding:4px;gap:3px}.spark-label-godfather small{font-size:5px;margin-top:2px}.spark-label-godfather .godfather-icon{width:16px;height:16px}.spark-label-philoxenia{font-size:11px;padding:4px 5px}.spark-photo-annotations ellipse,.spark-photo-annotations path{stroke-width:1.5}.spark-credit .spark-photo-key{font-size:9px;margin-top:22px}}
+
+/* Named photo credits: the brand mark stays beside TG. */
+.spark-credit .spark-photo-key{align-items:center;gap:10px 24px;font-size:11px;line-height:1.7}
+.spark-person-credit{display:inline-flex;align-items:center;gap:5px;flex-wrap:wrap}
+.spark-credit-mark{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:2px;background:var(--ink);color:var(--acid);margin-right:2px}
+.spark-credit-mark .godfather-icon{width:25px;height:25px}
+.spark-person-credit a{text-underline-offset:3px}

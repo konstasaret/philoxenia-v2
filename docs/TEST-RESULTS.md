@@ -37,3 +37,12 @@ The confirmation is owner-reported manual verification. Browser automation was r
 ## Source and data boundary
 
 Local records, backups, uploads, secrets and environment files stay excluded from Git. A row-by-row comparison with the pre-rebrand backup confirmed that all 21 tables other than website settings were unchanged. Existing credentials remain unchanged. The source repository contains only app code, public assets, clearly labelled examples, tests and documentation. Source delivery does not mean public hosting.
+
+## November 10, 2026: latest local site sync and homepage cleanup
+
+- Python regression suite: **63 passed** (`.venv/bin/python -m pytest -q`).
+- Motion/globe unit suite: **11 passed** (`node --test tests/motion.test.cjs tests/globe.test.cjs`).
+- Local headless Chrome checks passed at 1440, 768, 390 and 320 px widths: homepage images loaded, no horizontal overflow, no page errors, no failed local assets and no broken in-page anchors. Both inquiry forms, the Godfather directory and the program/privacy page also rendered without horizontal overflow at those widths.
+- Verified the motion pause/resume control and reduced-motion rendering. Inspected desktop and phone screenshots of the shortened homepage, hero and Code section.
+- Confirmed the hero wording, Godfather reference in chapter 02, reciprocity caption, contiguous chapter labels 01–04, removal of the former Godfather chapter, and removal of the one-form process banner. Directory, application and privacy links remain reachable.
+- Tests and browser preview used separate temporary demo data, not the operator's saved records. No production deployment or external form submission was performed.

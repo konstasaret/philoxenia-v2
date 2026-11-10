@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS listings(
  rules TEXT NOT NULL DEFAULT '', commitments TEXT NOT NULL DEFAULT '', benefits TEXT NOT NULL DEFAULT '{}',
  availability TEXT NOT NULL DEFAULT '', status TEXT NOT NULL CHECK(status IN ('draft','published','paused')),
  sample INTEGER NOT NULL DEFAULT 0, position INTEGER NOT NULL DEFAULT 0, image TEXT NOT NULL DEFAULT '',
- image_alt TEXT NOT NULL DEFAULT '', image_credit TEXT NOT NULL DEFAULT '',
+ image_alt TEXT NOT NULL DEFAULT '', image_credit TEXT NOT NULL DEFAULT '', linkedin_url TEXT NOT NULL DEFAULT '',
  contact_email TEXT NOT NULL DEFAULT '', contact_phone TEXT NOT NULL DEFAULT '', address TEXT NOT NULL DEFAULT '',
  private_notes TEXT NOT NULL DEFAULT '', updated_at TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS inquiries(
@@ -77,6 +77,9 @@ def init_db():
         from operations import backup
         backup(db(),current_app.config['DATA_DIR'],'before-intake-migration')
     db().executescript(SCHEMA)
+    with atomic():
+        if 'linkedin_url' not in {r['name'] for r in rows('PRAGMA table_info(listings)')}:
+            execute("ALTER TABLE listings ADD COLUMN linkedin_url TEXT NOT NULL DEFAULT ''")
     if one('SELECT 1 FROM intake_migrations WHERE version=1'): return
     tables = {r['name'] for r in rows("SELECT name FROM sqlite_master WHERE type='table'")}
     with atomic():
