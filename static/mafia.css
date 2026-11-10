@@ -22,6 +22,9 @@ html{scroll-padding-top:26px}body{font-family:Arial,Helvetica,sans-serif}::selec
 .public-site .footer{padding-block:45px;border-top:1px solid var(--ink);align-items:start}.footer-name{font-size:32px;font-weight:900;line-height:.95;text-transform:uppercase;letter-spacing:-.065em}
 .public-site .footer p{font-size:11px;margin-top:14px}.public-site .footer nav{gap:3px;font-size:12px}.public-site .footer nav a{padding-block:8px}.public-site .footer-note{font-size:19px}
 .mafia-home .chapter{padding-block:100px}.mafia-home h2{font-size:clamp(42px,5vw,66px)}
+/* Keep the directory link and the give-back code visually connected. */
+.mafia-home .global-section.chapter{padding-bottom:clamp(24px,4vw,48px)}
+.mafia-home .global-section+.family-code.chapter{padding-top:clamp(24px,4vw,48px)}
 .mafia-hero{padding-block:23px 55px}.hero-topline{display:flex;justify-content:space-between;gap:20px;font-size:9px;font-weight:650;letter-spacing:.11em;margin-bottom:38px}
 .mafia-hero-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:60px;align-items:center}
 .mafia-hero h1{font-family:'Arial Black',Arial,Helvetica,sans-serif;font-size:clamp(104px,13vw,178px);font-weight:900;letter-spacing:-.095em;line-height:.78;margin:0 0 26px}
